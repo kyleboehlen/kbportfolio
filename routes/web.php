@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Controllers
+use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +27,5 @@ Route::get('/', function () {
     return view('splash');
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Admin home -- need to change naming here, and change home redirect
+Route::get('/home', [HomeController::class, 'index'])->name('home');
