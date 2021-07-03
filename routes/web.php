@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes([
+    'register' => false, // Disable Registration Routes...
+    'reset' => false, // Disable Password Reset Routes...
+    'verify' => false, // Disable Email Verification Routes...
+]);
+
+// Index
 Route::get('/', function () {
-    return view('welcome');
+    return view('splash');
 });
