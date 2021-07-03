@@ -37,7 +37,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single', 'papertrail', ],
+            'channels' => ['single', 'papertrail', 'discord'],
             'ignore_exceptions' => false,
         ],
 
@@ -70,6 +70,13 @@ return [
                 'host' => env('PAPERTRAIL_URL'),
                 'port' => env('PAPERTRAIL_PORT'),
             ],
+        ],
+
+        'discord' => [
+            'driver' => 'custom',
+            'via'    => MarvinLabs\DiscordLogger\Logger::class,
+            'level'  => env('LOG_DISCORD_LEVEL', 'error'),
+            'url'    => env('LOG_DISCORD_WEBHOOK_URL'),
         ],
 
         'stderr' => [
