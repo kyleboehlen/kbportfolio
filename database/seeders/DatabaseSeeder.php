@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+// Models
+use App\Models\User;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -13,6 +16,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // Seed the admin user
+        if(User::all()->count() == 0)
+        {
+            $admin_user = new User([
+                'name' => config('admin.user.name'),
+                'email' => config('admin.user.email'),
+                'phone_number' => config('admin.user.phone_number'),
+                'password' => 'fuck off',
+            ]);
+        }
+        else // Update the admin user
+        {
+            $admin_user = User::all()->first();
+            $admin_user->name = config('admin.user.name');
+            $admin_user->email = config('admin.user.email');
+            $admin_user->phone_number = config('admin.user.phone_number');
+        }
+
+        $admin_user->save();
     }
 }
