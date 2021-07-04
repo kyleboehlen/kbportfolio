@@ -16,6 +16,7 @@ use App\Http\Controllers\HomeController;
 |
 */
 
+// Laravel ui auth
 Auth::routes([
     'register' => false, // Disable Registration Routes...
     'reset' => false, // Disable Password Reset Routes...
@@ -23,9 +24,4 @@ Auth::routes([
 ]);
 
 // Index
-Route::get('/', function () {
-    return view('splash');
-});
-
-// Admin home -- need to change naming here, and change home redirect
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');

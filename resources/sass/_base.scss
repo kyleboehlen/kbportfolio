@@ -1,5 +1,17 @@
-// FONTS
-@import url('https://fonts.googleapis.com/css2?family={family}&display=swap');
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Tourney:wght@300&display=swap');
 
 // Variables
 @import 'variables';
+
+// Use this if you want to import bootstrap
+// @import '~bootstrap/scss/bootstrap';
+
+html, body
+{
+    background-color: $dark-grey;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}

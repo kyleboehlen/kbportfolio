@@ -1,5 +1,5 @@
 require('./bootstrap');
 
 $(document).ready(function(){
-    alert('fuck you');
+    // alert('fuck you');
 });
