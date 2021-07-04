@@ -26,7 +26,7 @@
 
         {{-- Resume --}}
         <div class="menu-box" style="background-image: url(/storage/resume-background.jpg)">
-            <a class="menu-anchor" href="#">
+            <a class="menu-anchor" href="/storage/documents/resume.pdf" target="_blank">
                 <div class="menu-anchor">
                     <p class="menu-text bottom">Resume</p>
                 </div>
