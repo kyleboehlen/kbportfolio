@@ -1,15 +1,31 @@
 // Base site styles
 @import 'base';
 
-img#desktop-logo
+img#logo
 {
     bottom: 0;
     left: 0;
     margin: auto;
+    max-height: 30vh;
     position: absolute;
     right: 0;
     top: 0;
     z-index: 10;
+
+    @media only screen and (max-width: 1300px)
+    {
+        max-height: 25vh;
+    }
+
+    @media only screen and (max-width: 1050px)
+    {
+        max-height: 22.5vh;
+    }
+
+    @media only screen and (max-width: 775px)
+    {
+        max-height: 15vh;
+    }
 }
 
 div.menu-container
@@ -27,7 +43,14 @@ div.menu-container
         opacity: 55%;
         width: 50%;
 
-        &:hover
+        @media only screen and (max-width: 775px)
+        {
+            height: 25vh;
+            opacity: 70%;
+            width: 100%;
+        }
+
+        &:hover, &.active, &.focus
         {
             opacity: 90%;
         }
@@ -37,7 +60,27 @@ div.menu-container
             background-color: rgba(4, 33, 168, .2); // This matches $blue
         }
 
+        &:active > a.menu-anchor > div.menu-anchor
+        {
+            background-color: rgba(4, 33, 168, .2); // This matches $blue
+        }
+
+        &:focus > a.menu-anchor > div.menu-anchor
+        {
+            background-color: rgba(4, 33, 168, .2); // This matches $blue
+        }
+
         &:hover > a.menu-anchor > div.menu-anchor > p.menu-text
+        {
+            background-color: rgba(0, 0, 0, .75);
+        }
+        
+        &:active > a.menu-anchor > div.menu-anchor > p.menu-text
+        {
+            background-color: rgba(0, 0, 0, .75);
+        }
+
+        &:focus > a.menu-anchor > div.menu-anchor > p.menu-text
         {
             background-color: rgba(0, 0, 0, .75);
         }
@@ -61,9 +104,110 @@ div.menu-container
                     border-radius: 25px;
                     font-family: $menu-font-family;
                     font-size: 5em;
-                    padding: 25px;
+                    padding: 2vh;
                     text-align: center;
                     width: 70%;
+
+                    &.top
+                    {
+                        @media only screen and (max-width: 775px)
+                        {
+                            position: relative;
+                            top: -1vh;
+                        }
+
+                        @media only screen and (max-width: 650px)
+                        {
+                            top: -1.5vh;
+                        }
+
+                        @media only screen and (max-width: 460px)
+                        {
+                            top: -2vh;
+                        }
+                    }
+
+                    &.bottom
+                    {
+                        @media only screen and (max-width: 775px)
+                        {
+                            position: relative;
+                            bottom: -1vh;
+                        }
+
+                        @media only screen and (max-width: 650px)
+                        {
+                            bottom: -1.5vh;
+                        }
+
+                        @media only screen and (max-width: 460px)
+                        {
+                            bottom: -2vh;
+                        }
+                    }
+
+                    @media only screen and (max-width: 1800px)
+                    {
+                        font-size: 4.5em;
+                    }
+
+                    @media only screen and (max-width: 1600px)
+                    {
+                        font-size: 4em;
+                    }
+
+                    @media only screen and (max-width: 1400px)
+                    {
+                        font-size: 3.75em;
+                    }
+
+                    @media only screen and (max-width: 1300px)
+                    {
+                        font-size: 3.5em;
+                    }
+
+                    @media only screen and (max-width: 1150px)
+                    {
+                        font-size: 3.25em;
+                    }
+
+                    @media only screen and (max-width: 1150px)
+                    {
+                        width: 80%;
+                    }
+
+                    @media only screen and (max-width: 1050px)
+                    {
+                        font-size: 3em;
+                    }
+
+                    @media only screen and (max-width: 900px)
+                    {
+                        font-size: 2.75em;
+                    }
+
+                    @media only screen and (max-width: 775px)
+                    {
+                        font-size: 2.5em;
+                        padding: 1.5vh;
+                        width: 90%;
+                    }
+
+                    @media only screen and (max-width: 775px)
+                    {
+                        background-color: rgba(0, 0, 0, .75);
+                        padding: 1vh;
+                    }
+
+                    @media only screen and (max-width: 460px)
+                    {
+                        font-size: 2.25em;
+                    }
+
+                    @media only screen and (max-width: 420px)
+                    {
+                        font-size: 2em;
+                    }
                 }
             }
         }

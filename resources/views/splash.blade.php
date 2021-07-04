@@ -2,7 +2,7 @@
 
 @section('body')
     {{-- Desktop logo --}}
-    <img src="/storage/klogo.png" id="desktop-logo"/>
+    <img src="/storage/klogo.png" id="logo"/>
 
     <div class="menu-container">
         
@@ -19,7 +19,7 @@
         <div class="menu-box" style="background-image: url(/storage/software-background.jpg)">
             <a class="menu-anchor" href="#">
                 <div class="menu-anchor">
-                    <p class="menu-text">Software</p>
+                    <p class="menu-text top">Software</p>
                 </div>
             </a>
         </div>
@@ -28,7 +28,7 @@
         <div class="menu-box" style="background-image: url(/storage/resume-background.jpg)">
             <a class="menu-anchor" href="#">
                 <div class="menu-anchor">
-                    <p class="menu-text">Resume</p>
+                    <p class="menu-text bottom">Resume</p>
                 </div>
             </a>
         </div>
