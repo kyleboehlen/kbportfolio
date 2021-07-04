@@ -50,17 +50,17 @@ div.contact-container
 
         &:hover > p.contact-text
         {
-            background-color: rgba(4, 33, 168, .4); // This matches $blue
+            background-color: rgba(4, 33, 168, .65); // This matches $blue
         }
 
         &:active > p.contact-text
         {
-            background-color: rgba(4, 33, 168, .4); // This matches $blue
+            background-color: rgba(4, 33, 168, .65); // This matches $blue
         }
 
         &:focus > p.contact-text
         {
-            background-color: rgba(4, 33, 168, .4); // This matches $blue
+            background-color: rgba(4, 33, 168, .65); // This matches $blue
         }
 
         p.contact-text

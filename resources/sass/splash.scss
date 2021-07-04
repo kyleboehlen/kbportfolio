@@ -52,37 +52,22 @@ div.menu-container
 
         &:hover, &.active, &.focus
         {
-            opacity: 90%;
-        }
-
-        &:hover > a.menu-anchor > div.menu-anchor
-        {
-            background-color: rgba(4, 33, 168, .2); // This matches $blue
-        }
-
-        &:active > a.menu-anchor > div.menu-anchor
-        {
-            background-color: rgba(4, 33, 168, .2); // This matches $blue
-        }
-
-        &:focus > a.menu-anchor > div.menu-anchor
-        {
-            background-color: rgba(4, 33, 168, .2); // This matches $blue
+            opacity: 100%;
         }
 
         &:hover > a.menu-anchor > div.menu-anchor > p.menu-text
         {
-            background-color: rgba(0, 0, 0, .75);
+            background-color: rgba(4, 33, 168, .85); // This matches $blue
         }
         
         &:active > a.menu-anchor > div.menu-anchor > p.menu-text
         {
-            background-color: rgba(0, 0, 0, .75);
+            background-color: rgba(4, 33, 168, .85); // This matches $blue
         }
 
         &:focus > a.menu-anchor > div.menu-anchor > p.menu-text
         {
-            background-color: rgba(0, 0, 0, .75);
+            background-color: rgba(4, 33, 168, .85); // This matches $blue
         }
 
         a.menu-anchor
