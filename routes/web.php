@@ -24,4 +24,7 @@ Auth::routes([
 ]);
 
 // Index
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('index');
+
+// Contact
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');

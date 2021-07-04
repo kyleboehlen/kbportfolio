@@ -1,7 +1,7 @@
 @extends('base')
 
 @section('body')
-    {{-- Desktop logo --}}
+    {{-- Logo --}}
     <img src="/storage/klogo.png" id="logo"/>
 
     <div class="menu-container">
@@ -35,7 +35,7 @@
 
         {{-- Contact --}}
         <div class="menu-box" style="background-image: url(/storage/contact-background.jpg)">
-            <a class="menu-anchor" href="#">
+            <a class="menu-anchor" href="{{ route('contact') }}">
                 <div class="menu-anchor">
                     <p class="menu-text">Contact</p>
                 </div>
