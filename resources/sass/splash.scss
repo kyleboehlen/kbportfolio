@@ -55,19 +55,34 @@ div.menu-container
             opacity: 100%;
         }
 
+        &:hover > a.menu-anchor > div.menu-anchor
+        {
+            background-color: rgba(4, 33, 168, .12); // This matches $blue
+        }
+        
+        &:active > a.menu-anchor > div.menu-anchor
+        {
+            background-color: rgba(4, 33, 168, .12); // This matches $blue
+        }
+
+        &:focus > a.menu-anchor > div.menu-anchor
+        {
+            background-color: rgba(4, 33, 168, .12); // This matches $blue
+        }
+
         &:hover > a.menu-anchor > div.menu-anchor > p.menu-text
         {
-            background-color: rgba(4, 33, 168, .85); // This matches $blue
+            background-color: rgba(4, 33, 168, .78); // This matches $blue
         }
         
         &:active > a.menu-anchor > div.menu-anchor > p.menu-text
         {
-            background-color: rgba(4, 33, 168, .85); // This matches $blue
+            background-color: rgba(4, 33, 168, .78); // This matches $blue
         }
 
         &:focus > a.menu-anchor > div.menu-anchor > p.menu-text
         {
-            background-color: rgba(4, 33, 168, .85); // This matches $blue
+            background-color: rgba(4, 33, 168, .78); // This matches $blue
         }
 
         a.menu-anchor
