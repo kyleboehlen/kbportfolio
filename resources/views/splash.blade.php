@@ -2,10 +2,10 @@
 
 @section('body')
     {{-- Logo --}}
-    <img src="/storage/klogo.png" id="logo"/>
+    <img class="context-logo" src="/storage/klogo.png" id="logo" />
 
     <div class="menu-container">
-        
+
         {{-- Photography --}}
         <div class="menu-box" style="background-image: url(/storage/photography-background.jpg)">
             <a class="menu-anchor" href="#">

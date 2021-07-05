@@ -1,0 +1,120 @@
+// Base site styles
+@import 'base';
+
+// Import bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+html, body
+{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+// Admin alert
+.swal2-title, .swal2-html-container
+{
+    color: $white;
+    font-size: 1.5em;
+}
+
+// Background
+.background
+{
+    background-position: bottom;
+    background-size: cover;
+    height: 100%;
+    opacity: 75%;
+    position: absolute;
+    width: 100%;
+}
+
+// Navbar container
+nav
+{
+    z-index: 10;
+}
+
+// Navbar logo
+#logo
+{
+    max-height: 5vh;
+}
+
+// Navbar link/text
+.nav-link, .navbar-text
+{
+    font-size: 2em;
+}
+
+// Right float login/logout buttons
+.auth-div
+{
+    width: 10%;
+
+    a, button
+    {
+        font-size: 1.5em;
+    }
+
+    button
+    {
+        width: 100%;
+    }
+
+    &:hover > .auth-hover-hide
+    {
+        display: none;
+    }
+
+    .auth-hover-show
+    {
+        display: none;
+    }
+
+    &:hover > .auth-hover-show
+    {
+        display: block;
+    }
+}
+
+.spacer
+{
+    height: 5vh;
+}
+
+.side-nav
+{
+    // background-color: $dark-grey;
+    border-radius: 15px;
+    height: 75vh;
+
+    &.outline
+    {
+        border: 4px solid $dark-grey;
+        box-sizing: border-box;
+    }
+}
+
+.panel
+{
+    border-radius: 15px;
+    height: 75vh;
+
+    &.placeholder
+    {
+        border: 4px solid $dark-grey;
+        box-sizing: border-box;
+    }
+}
+
+.copywrite
+{
+    p
+    {
+        font-size: 1.5em;
+        text-align: center;
+        width: 100%;
+    }
+}
