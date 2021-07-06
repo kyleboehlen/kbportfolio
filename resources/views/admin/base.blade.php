@@ -28,52 +28,51 @@
                 <img src="/storage/klogo.png" id="logo">
             </a>
 
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="float-end auth-div d-block d-lg-none d-xl-none d-xxl-none">
+                @include('admin.includes.auth-btn')
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link {{ $route == 'admin' ? 'active' : '' }}" href="{{ route('admin') }}">Home</a>
+                        <a class="nav-link fs-2 {{ $route == 'admin' ? 'active' : '' }}" href="{{ route('admin') }}">Home</a>
                     </li>
 
-                    <span class="navbar-text"> | </span>
+                    <span class="navbar-text fs-2 d-none d-lg-block d-xl-block d-xxl-block"> | </span>
 
                     <li class="nav-item">
-                        <a class="nav-link {{ strpos($route, 'admin.photography') !== false ? 'active' : '' }}" href="{{ route('admin.photography') }}">Photography</a>
+                        <a class="nav-link fs-2 {{ strpos($route, 'admin.photography') !== false ? 'active' : '' }}" href="{{ route('admin.photography') }}">Photography</a>
                     </li>
 
-                    <span class="navbar-text"> | </span>
+                    <span class="navbar-text fs-2 d-none d-lg-block d-xl-block d-xxl-block"> | </span>
 
                     <li class="nav-item">
-                        <a class="nav-link {{ strpos($route, 'admin.software') !== false ? 'active' : '' }}" href="{{ route('admin.software') }}">Software</a>
+                        <a class="nav-link fs-2 {{ strpos($route, 'admin.software') !== false ? 'active' : '' }}" href="{{ route('admin.software') }}">Software</a>
                     </li>
 
-                    <span class="navbar-text"> | </span>
+                    <span class="navbar-text fs-2 d-none d-lg-block d-xl-block d-xxl-block"> | </span>
 
                     <li class="nav-item">
-                        <a class="nav-link {{ strpos($route, 'admin.resume') !== false ? 'active' : '' }}" href="{{ route('admin.resume') }}">Resume</a>
+                        <a class="nav-link fs-2 {{ strpos($route, 'admin.resume') !== false ? 'active' : '' }}" href="{{ route('admin.resume') }}">Resume</a>
                     </li>
 
-                    <span class="navbar-text"> | </span>
+                    <span class="navbar-text fs-2 d-none d-lg-block d-xl-block d-xxl-block"> | </span>
 
                     <li class="nav-item">
-                        <a class="nav-link {{ strpos($route, 'admin.contact') !== false ? 'active' : '' }}" href="{{ route('admin.contact') }}">Contact</a>
+                        <a class="nav-link fs-2 {{ strpos($route, 'admin.contact') !== false ? 'active' : '' }}" href="{{ route('admin.contact') }}">Contact</a>
                     </li>
                 </ul>
             </div>
 
-            <div class="float-end auth-div">
-                @if(\Auth::check())
-                    <button class="btn btn-outline-success auth-hover-hide" type="button">Admin</button>
-                    <form class="auth-hover-show" action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button class="btn btn-danger" type="submit">Log Out</button>
-                    </form>
-                @else
-                    <button class="btn btn-outline-danger auth-hover-hide" type="button">Guest</button>
-                    <a class="btn btn-success auth-hover-show" href="{{ route('login') }}">Login</a>
-                @endif
+            <div class="float-end auth-div d-none d-lg-block d-xl-block d-xxl-block">
+                @include('admin.includes.auth-btn')
             </div>
         </div>
-      </nav>
+    </nav>
 
       <div class="spacer"></div>
 
