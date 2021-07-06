@@ -11,9 +11,9 @@
 
         <!-- Scripts -->
         @if(config('app.env') == 'local')
-            <script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
+            <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         @else
-            <script type="text/javascript" src="{{ mix('assets/js/app.js') }}" defer></script>
+            <script type="text/javascript" src="{{ mix('assets/js/app.js') }}"></script>
         @endif
         
         <!-- Styles -->
