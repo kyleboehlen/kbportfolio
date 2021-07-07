@@ -5,7 +5,7 @@
 <div class="background" style="background-image: url(/storage/admin-background.jpg)"></div>
 
 <br/><br/>
-<div class="container">
+<div class="container background-z-index">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card text-white bg-dark">

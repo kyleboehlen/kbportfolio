@@ -31,9 +31,10 @@ html, body
     z-index: 1;
 }
 
-// Navbar container
-nav
+// This handles keeping everything else in front of the background for opacity reasons
+.background-z-index
 {
+    position: relative;
     z-index: 10;
 }
 
@@ -85,18 +86,20 @@ nav
     }
 }
 
-.spacer
+.top-nav
 {
-    height: 5vh;
+    z-index: 20;
+
+    .card-header
+    {
+        padding: 0;
+    }
 }
 
 .side-nav
 {
-    // background-color: $dark-grey;
     border-radius: 15px;
-    height: 75vh;
-    position: relative;
-    z-index: 10;
+    height: 80vh;
 
     &.outline
     {
@@ -105,12 +108,52 @@ nav
     }
 }
 
+.action-nav
+{
+    padding: 15px;
+    padding-top: 0;
+
+    .nav-link
+    {
+        border-bottom: 3px solid $light-grey;
+        border-top: 3px solid $light-grey;
+        border-radius: 15px;
+        color: $white;
+        width: 100%;
+
+        p
+        {
+            display: inline-block;
+            margin: 0;
+            text-align: center;
+        }
+
+        &:hover
+        {
+            background-color: rgba(146, 157, 156, .25); // Matches $light-grey
+            border-radius: 30px;
+        }
+    }
+}
+
 .panel
 {
     border-radius: 15px;
-    height: 75vh;
-    position: relative;
-    z-index: 10;
+
+    &.full-height
+    {
+        height: 80vh;
+
+        @media only screen and (max-width: 768px)
+        {
+            height: 70vh;
+        }
+
+        @media only screen and (max-height: 730px)
+        {
+            height: 65vh;
+        }
+    }
 
     &.placeholder
     {

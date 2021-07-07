@@ -22,7 +22,7 @@
     <div class="background" style="background-image: url(/storage/admin-background.jpg)"></div>
 
     {{-- Top Nav --}}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark background-z-index">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('index') }}">
                 <img src="/storage/klogo.png" id="logo">
@@ -74,34 +74,59 @@
         </div>
     </nav>
 
-    <div class="spacer"></div>
-
     {{-- Content --}}
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            {{-- Side nav --}}
-            <div class="col-md-2">
-                <div class="side-nav {{ isset($side_nav_opts) ? '' : 'outline' }}">
+    <div class="container-fluid background-z-index">
+        <div class="row d-block d-md-none mt-3">
+            {{-- Top nav --}}
+            <div class="col-12">
+                <div class="top-nav {{ isset($action_nav_opts) ? '' : 'outline' }}">
+                    <div class="panel card bg-dark text-white">
+                        <div class="card-header fs-2 text-center"
+                                data-bs-toggle="collapse"
+                                data-bs-target=".mobile-action-collapse"
+                                aria-expanded="false"
+                                aria-controls="action-collapse">
+                            Actions
+                        </div>
+                        <div class="card-body action-nav collapse mobile-action-collapse">
+                            @isset($action_nav_opts)
+                                @include('admin.includes.action-nav')
+                            @endisset      
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="row justify-content-evenly">
+            {{-- Side nav --}}
+            <div class="col-lg-3 col-md-4 d-none d-md-block mt-4" style="max-width: 350px;">
+                <div class="side-nav {{ isset($action_nav_opts) ? '' : 'outline' }}">
+                    <div class="panel full-height card bg-dark text-white">
+                        <div class="card-header fs-1 text-center">
+                            Actions
+                        </div>
+                        <div class="card-body action-nav">
+                            @isset($action_nav_opts)
+                                @include('admin.includes.action-nav')
+                            @endisset      
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            {{-- Spacer --}}
-            <div class="col-md-1"></div>
-
             {{-- Panel --}}
-            <div class="col-md-7">
+            <div class="col-xl-7 col-md-8 col-sm-12 mt-4  collapse show mobile-action-collapse">
                 @yield('panel')
             </div>
         </div>
     </div>
 
     {{-- Copywrite --}}
-    <div class="container-fluid">
+    <div class="container-fluid background-z-index">
         <div class="row justify-content-center">
             <div class="col-md-4 copywrite">
-                <br/>
-                <p class="mt-2">&copy; {{ \Carbon\Carbon::now()->format('Y') }} Kyle Boehlen</p>
+                <p class="mt-4">&copy; {{ \Carbon\Carbon::now()->format('Y') }} Kyle Boehlen</p>
             </div>
         </div>
     </div>
