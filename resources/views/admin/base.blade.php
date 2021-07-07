@@ -6,7 +6,7 @@
         <script>
             swal.fire({
                 title: '{{ $admin_alert['title'] }}',
-                icon: '{{ $admin_alert['body'] }}',
+                icon: '{{ $admin_alert['icon'] }}',
                 iconColor: '#38c172',
                 html: `<p class="alert-text">{{ $admin_alert['body'] }}</p>`,
                 padding: '.5rem',
@@ -17,6 +17,22 @@
             });
         </script>
     @endisset
+
+    @if(!is_null(session('success_alert')))
+        <script>
+            swal.fire({
+                title: 'Success!',
+                icon: 'success',
+                iconColor: '#38c172',
+                html: `<p class="alert-text">{{ session('success_alert') }}</p>`,
+                padding: '.5rem',
+                showCancelButton: false,
+                confirmButtonColor: '#38c172',
+                confirmButtonText: 'Okay',
+                background: '#2e3535',
+            });
+        </script>
+    @endif
 
     {{-- Background --}}
     <div class="background" style="background-image: url(/storage/admin-background.jpg)"></div>
@@ -80,20 +96,20 @@
             {{-- Top nav --}}
             <div class="col-12">
                 <div class="top-nav {{ isset($action_nav_opts) ? '' : 'outline' }}">
-                    <div class="panel card bg-dark text-white">
-                        <div class="card-header fs-2 text-center"
-                                data-bs-toggle="collapse"
-                                data-bs-target=".mobile-action-collapse"
-                                aria-expanded="false"
-                                aria-controls="action-collapse">
-                            Actions
+                    @isset($action_nav_opts)
+                        <div class="panel card bg-dark text-white">
+                            <div class="card-header fs-2 text-center"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target=".mobile-action-collapse"
+                                    aria-expanded="false"
+                                    aria-controls="action-collapse">
+                                Actions
+                            </div>
+                            <div class="card-body action-nav collapse mobile-action-collapse">
+                                @include('admin.includes.action-nav')  
+                            </div>
                         </div>
-                        <div class="card-body action-nav collapse mobile-action-collapse">
-                            @isset($action_nav_opts)
-                                @include('admin.includes.action-nav')
-                            @endisset      
-                        </div>
-                    </div>
+                    @endisset 
                 </div>
             </div>
         </div>
@@ -102,21 +118,21 @@
             {{-- Side nav --}}
             <div class="col-lg-3 col-md-4 d-none d-md-block mt-4" style="max-width: 350px;">
                 <div class="side-nav {{ isset($action_nav_opts) ? '' : 'outline' }}">
-                    <div class="panel full-height card bg-dark text-white">
-                        <div class="card-header fs-1 text-center">
-                            Actions
+                    @isset($action_nav_opts)
+                        <div class="panel full-height card bg-dark text-white">
+                            <div class="card-header fs-1 text-center">
+                                Actions
+                            </div>
+                            <div class="card-body action-nav">
+                                @include('admin.includes.action-nav') 
+                            </div>
                         </div>
-                        <div class="card-body action-nav">
-                            @isset($action_nav_opts)
-                                @include('admin.includes.action-nav')
-                            @endisset      
-                        </div>
-                    </div>
+                    @endisset
                 </div>
             </div>
 
             {{-- Panel --}}
-            <div class="col-xl-7 col-md-8 col-sm-12 mt-4  collapse show mobile-action-collapse">
+            <div class="col-xl-7 col-md-8 col-sm-12 mt-4 collapse show mobile-action-collapse">
                 @yield('panel')
             </div>
         </div>

@@ -7,13 +7,23 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Show the splash page
      *
-     * @return void
+     * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function __construct()
+    public function index()
     {
+        return view('admin.index');
+    }
         
+    /**
+     * Redirect to the admin view resume function
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function resume()
+    {
+        return redirect()->route('admin.resume.view');
     }
 
     /**

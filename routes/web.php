@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 // Controllers
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ResumeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,8 +51,14 @@ Route::group(['prefix' => 'admin',  'middleware' => 'admin.alert'], function(){
     // Resume
     Route::prefix('resume')->group(function(){
         // Index
-        Route::get('/', [AdminController::class, 'index'])->name('admin.resume');
+        Route::get('/', [AdminController::class, 'resume'])->name('admin.resume');
     
+        // View
+        Route::get('view', [ResumeController::class, 'view'])->name('admin.resume.view');
+
+        // Update
+        Route::get('upload', [ResumeController::class, 'editResume'])->name('admin.resume.edit');
+        Route::post('upload', [ResumeController::class, 'updateResume'])->name('admin.resume.update');
     });
 
     // Contact

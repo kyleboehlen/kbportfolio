@@ -1,5 +1,5 @@
 @extends('admin.base')
 
 @section('panel')
-    <div class="panel placeholder"></div>
+    <div class="panel full-height placeholder"></div>
 @endsection
