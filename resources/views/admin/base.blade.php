@@ -74,9 +74,10 @@
         </div>
     </nav>
 
-      <div class="spacer"></div>
+    <div class="spacer"></div>
 
-      <div class="container-fluid">
+    {{-- Content --}}
+    <div class="container-fluid">
         <div class="row justify-content-center">
             {{-- Side nav --}}
             <div class="col-md-2">
@@ -93,14 +94,15 @@
                 @yield('panel')
             </div>
         </div>
-      </div>
+    </div>
 
-      <div class="container-fluid">
-          <div class="row justify-content-center">
-              <div class="col-md-4 copywrite">
-                  <br/>
-                  <p class="mt-2">&copy; {{ \Carbon\Carbon::now()->format('Y') }} Kyle Boehlen</p>
-              </div>
-          </div>
-      </div>
+    {{-- Copywrite --}}
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-4 copywrite">
+                <br/>
+                <p class="mt-2">&copy; {{ \Carbon\Carbon::now()->format('Y') }} Kyle Boehlen</p>
+            </div>
+        </div>
+    </div>
 @endsection
