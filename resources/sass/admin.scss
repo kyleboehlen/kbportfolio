@@ -16,7 +16,37 @@ html, body
 .swal2-title, .swal2-html-container
 {
     color: $white;
+}
+
+.swal2-html-container
+{
     font-size: 1.5em;
+    padding: 2.5px;
+
+    @media only screen and (max-width: 576px)
+    {
+        font-size: 1em;
+    }
+}
+
+.swal2-title
+{
+    font-size: 3em;
+
+    @media only screen and (max-width: 576px)
+    {
+        font-size: 1.5em;
+    }
+}
+
+.swal2-actions
+{
+    margin-bottom: 10%;
+
+    @media only screen and (max-width: 576px)
+    {
+        margin-bottom: 5%;
+    }
 }
 
 // Background
