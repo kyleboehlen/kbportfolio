@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             $admin_user = new User([
                 'name' => config('admin.user.name'),
                 'email' => config('admin.user.email'),
+                'contact_email' => config('admin.user.email'),
                 'phone_number' => config('admin.user.phone_number'),
                 'password' => 'fuck off',
             ]);
@@ -31,7 +32,6 @@ class DatabaseSeeder extends Seeder
             $admin_user = User::all()->first();
             $admin_user->name = config('admin.user.name');
             $admin_user->email = config('admin.user.email');
-            $admin_user->phone_number = config('admin.user.phone_number');
         }
 
         $admin_user->save();

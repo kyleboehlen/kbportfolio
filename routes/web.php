@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Controllers
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ResumeController;
 
@@ -29,7 +30,13 @@ Auth::routes([
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
 // Contact
-Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::prefix('contact')->group(function(){
+    // Index
+    Route::get('/', [HomeController::class, 'contact'])->name('contact');
+
+    // Details
+    Route::get('details', [ContactController::class, 'details'])->name('contact.details');
+});
 
 // Admin Panel
 Route::group(['prefix' => 'admin',  'middleware' => 'admin.alert'], function(){
@@ -64,6 +71,17 @@ Route::group(['prefix' => 'admin',  'middleware' => 'admin.alert'], function(){
     // Contact
     Route::prefix('contact')->group(function(){
         // Index
-        Route::get('/', [AdminController::class, 'index'])->name('admin.contact');
+        Route::get('/', [AdminController::class, 'contact'])->name('admin.contact');
+
+        // View contact details page
+        Route::get('details', [ContactController::class, 'adminDetails'])->name('admin.contact.details');
+
+        // Update phone number routes
+        Route::get('phone-number', [ContactController::class, 'editPhoneNumber'])->name('admin.contact.edit.phone-number');
+        Route::post('phone-number', [ContactController::class, 'updatePhoneNumber'])->name('admin.contact.update.phone-number');
+
+        // Update email routes
+        Route::get('email', [ContactController::class, 'editEmail'])->name('admin.contact.edit.email');
+        Route::post('email', [ContactController::class, 'updateEmail'])->name('admin.contact.update.email');
     });
 });

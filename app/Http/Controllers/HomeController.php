@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-// Models
-use App\Models\User;
-
 class HomeController extends Controller
 {
     /**
@@ -32,16 +29,10 @@ class HomeController extends Controller
     /**
      * Show the contact page
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function contact()
     {
-        // Get the admin user for contact details
-        $user = User::all()->first();
-
-        return view('contact')->with([
-            'stylesheet' => 'contact',
-            'user' => $user,
-        ]);
+        return redirect()->route('contact.details');
     }
 }

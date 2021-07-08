@@ -19,7 +19,7 @@ class AdminController extends Controller
     /**
      * Redirect to the admin view resume function
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function resume()
     {
@@ -27,12 +27,12 @@ class AdminController extends Controller
     }
 
     /**
-     * Show the splash page
+     * Redirect to the admin view contact details function
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function index()
+    public function contact()
     {
-        return view('admin.index');
+        return redirect()->route('admin.contact.details');
     }
 }

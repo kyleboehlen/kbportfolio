@@ -14,8 +14,8 @@
         </a>
 
         {{-- Email --}}
-        <a class="contact-anchor" href="mailto:{{ $user->email }}">
-            <p class="contact-text">{{ $user->email }}</p>
+        <a class="contact-anchor" href="mailto:{{ $user->contact_email }}">
+            <p class="contact-text">{{ $user->contact_email }}</p>
         </a>
     </div>
 
