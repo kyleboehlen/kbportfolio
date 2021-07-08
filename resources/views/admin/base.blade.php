@@ -53,7 +53,7 @@
             </div>
 
             <div class="collapse navbar-collapse" id="navbar-collapse">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
                     <li class="nav-item">
                         <a class="nav-link fs-2 {{ $route == 'admin' ? 'active' : '' }}" href="{{ route('admin') }}">Home</a>
                     </li>
