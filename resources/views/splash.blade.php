@@ -2,13 +2,12 @@
 
 @section('body')
     {{-- Logo --}}
-    <img class="context-logo" src="/storage/klogo.png" id="logo" />
+    <img class="context-logo" src="/storage/images/klogo.png" id="logo" />
 
     <div class="menu-container">
 
         {{-- Photography --}}
-        <div class="menu-box" style="background-image: url(/storage/photography-background.jpg)">
-            <a class="menu-anchor" href="#">
+        <div class="menu-box" style="background-image: url(/storage/images/photography-background.jpg)">
                 <div class="menu-anchor">
                     <p class="menu-text">Photography</p>
                 </div>
@@ -16,8 +15,7 @@
         </div>
 
         {{-- Software --}}
-        <div class="menu-box" style="background-image: url(/storage/software-background.jpg)">
-            <a class="menu-anchor" href="#">
+        <div class="menu-box" style="background-image: url(/storage/images/software-background.jpg)">
                 <div class="menu-anchor">
                     <p class="menu-text top">Software</p>
                 </div>
@@ -25,7 +23,7 @@
         </div>
 
         {{-- Resume --}}
-        <div class="menu-box" style="background-image: url(/storage/resume-background.jpg)">
+        <div class="menu-box" style="background-image: url(/storage/images/resume-background.jpg)">
             <a class="menu-anchor" href="/storage/documents/resume.pdf" target="_blank">
                 <div class="menu-anchor">
                     <p class="menu-text bottom">Resume</p>
@@ -34,7 +32,7 @@
         </div>
 
         {{-- Contact --}}
-        <div class="menu-box" style="background-image: url(/storage/contact-background.jpg)">
+        <div class="menu-box" style="background-image: url(/storage/images/contact-background.jpg)">
             <a class="menu-anchor" href="{{ route('contact') }}">
                 <div class="menu-anchor">
                     <p class="menu-text">Contact</p>

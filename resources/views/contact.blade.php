@@ -5,7 +5,7 @@
     <div class="contact-container">
         {{-- Logo --}}
         <a href="{{ route('index') }}">
-            <img src="/storage/klogo.png" id="logo"/>
+            <img src="/storage/images/klogo.png" id="logo"/>
         </a>
         
         {{-- Phone Number --}}
@@ -20,7 +20,7 @@
     </div>
 
     {{-- Background div --}}
-    <div class="background" style="background-image: url(/storage/contact-background-hi-res.jpg)">
+    <div class="background" style="background-image: url(/storage/images/contact-background-hi-res.jpg)">
         <!-- Hello there! -->
     </div
 @endsection

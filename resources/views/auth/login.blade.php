@@ -2,7 +2,7 @@
 
 @section('body')
 {{-- Background --}}
-<div class="background" style="background-image: url(/storage/admin-background.jpg)"></div>
+<div class="background" style="background-image: url(/storage/images/admin-background.jpg)"></div>
 
 <br/><br/>
 <div class="container background-z-index">
