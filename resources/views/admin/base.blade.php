@@ -18,6 +18,7 @@
         </script>
     @endisset
 
+    {{-- Success alert --}}
     @if(!is_null(session('success_alert')))
         <script>
             swal.fire({
@@ -25,6 +26,23 @@
                 icon: 'success',
                 iconColor: '#38c172',
                 html: `<p class="alert-text">{{ session('success_alert') }}</p>`,
+                padding: '.5rem',
+                showCancelButton: false,
+                confirmButtonColor: '#38c172',
+                confirmButtonText: 'Okay',
+                background: '#2e3535',
+            });
+        </script>
+    @endif
+
+    {{-- Failure alert --}}
+    @if(!is_null(session('failure_alert')))
+        <script>
+            swal.fire({
+                title: 'Failure',
+                icon: 'error',
+                iconColor: '#e3342f',
+                html: `<p class="alert-text">{{ session('failure_alert') }}</p>`,
                 padding: '.5rem',
                 showCancelButton: false,
                 confirmButtonColor: '#38c172',

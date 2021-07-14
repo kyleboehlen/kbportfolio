@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ResumeController;
+use App\Http\Controllers\SoftwareController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +53,13 @@ Route::group(['prefix' => 'admin',  'middleware' => 'admin.alert'], function(){
     // Software
     Route::prefix('software')->group(function(){
         // Index
-        Route::get('/', [AdminController::class, 'index'])->name('admin.software');
+        // Admin add routes
+        Route::get('add', [SoftwareController::class, 'add'])->name('admin.software.add');
+        Route::post('add', [SoftwareController::class, 'store'])->name('admin.software.store');
+
+        // Admin edit routes
+        Route::get('edit/{project}', [SoftwareController::class, 'edit'])->name('admin.software.edit');
+        Route::post('edit/{project}', [SoftwareController::class, 'update'])->name('admin.software.update');
     });
 
     // Resume

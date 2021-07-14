@@ -161,6 +161,7 @@ html, body
 {
     padding: 15px;
     padding-top: 0;
+    overflow-y: hidden;
 
     .nav-link
     {
@@ -207,6 +208,11 @@ html, body
         {
             height: 60vh;
         }
+    }
+
+    &.scroll
+    {
+        overflow-y: scroll;
     }
 
     &.placeholder

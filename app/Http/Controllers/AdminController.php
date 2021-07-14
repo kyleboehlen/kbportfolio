@@ -16,6 +16,17 @@ class AdminController extends Controller
         return view('admin.index');
     }
         
+
+    /**
+     * Redirect to view the add software project form
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function software()
+    {
+        return redirect()->route('admin.software.add');
+    }
+
     /**
      * Redirect to the admin view resume function
      *

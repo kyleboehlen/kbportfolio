@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 
 // Models
 use App\Models\User;
+use App\Models\Software\Technologies;
 
 class DatabaseSeeder extends Seeder
 {
@@ -33,7 +34,12 @@ class DatabaseSeeder extends Seeder
             $admin_user->name = config('admin.user.name');
             $admin_user->email = config('admin.user.email');
         }
-
         $admin_user->save();
+
+        // Seed technologies
+        foreach(config('software.technologies') as $key => $values)
+        {
+            Technologies::updateOrCreate(['id' => $key], $values);
+        }
     }
 }
