@@ -145,6 +145,18 @@
                                 @include('admin.includes.action-nav') 
                             </div>
                         </div>
+                    @else
+                        <div class="blockrain d-none d-lg-block" style="margin: auto; margin-top: 4%; height: 96%; width: 97%;">
+                        </div>
+                
+                        <script>
+                            $('.blockrain').blockrain();
+                        </script>
+
+                        @push('head')
+                            <link rel="stylesheet" href="{{ asset('blockrain/blockrain.css') }}">
+                            <script src="{{ asset('blockrain/blockrain.jquery.min.js') }}"></script>
+                        @endpush
                     @endisset
                 </div>
             </div>

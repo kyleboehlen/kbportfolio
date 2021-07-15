@@ -29,6 +29,9 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest">
 
+        {{-- Child push --}}
+        @stack('head')
+
         {{-- HTML5 Shiv --}}
         <!--[if lt IE 9]>
             <script src="bower_components/html5shiv/dist/html5shiv.js"></script>
