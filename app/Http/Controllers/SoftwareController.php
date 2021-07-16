@@ -40,6 +40,23 @@ class SoftwareController extends Controller
             ]);
         }
     }
+    
+    public function projects()
+    {
+        $projects = Projects::all();
+        foreach($projects as $project)
+        {
+            $project->setTechnologiesArray();
+        }
+
+        $technologies = config('software.technologies');
+
+        return view('software')->with([
+            'stylesheet' => 'software',
+            'projects' => $projects,
+            'technologies' => $technologies,
+        ]);
+    }
 
     public function add()
     {
@@ -51,16 +68,16 @@ class SoftwareController extends Controller
 
     public function store(StoreRequest $request)
     {
+        // Create new project
+        $project = new Projects([
+            'name' => $request->get('name'),
+            'type' => $request->get('type'),
+            'desc' => $request->get('desc'),
+            'app_link' => $request->get('app-link'),
+        ]);
+
         if(\Auth::check())
         {
-            // Create new project
-            $project = new Projects([
-                'name' => $request->get('name'),
-                'type' => $request->get('type'),
-                'desc' => $request->get('desc'),
-                'app_link' => $request->get('app-link'),
-            ]);
-
             // Check if it has a private codebase
             if(!$request->has('private-codebase'))
             {

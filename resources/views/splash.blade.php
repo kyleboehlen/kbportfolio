@@ -16,6 +16,7 @@
 
         {{-- Software --}}
         <div class="menu-box" style="background-image: url(/storage/images/software-background.jpg)">
+            <a class="menu-anchor" href="{{ route('software') }}">
                 <div class="menu-anchor">
                     <p class="menu-text top">Software</p>
                 </div>

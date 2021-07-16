@@ -19,7 +19,7 @@ return [
         3 => [
             'name' => 'jQuery',
             'bg_color' => 'warning',
-            'text_dark' => false,
+            'text_dark' => true,
         ],
         4 => [
             'name' => 'Laravel',
@@ -29,7 +29,7 @@ return [
         6 => [
             'name' => 'PWA',
             'bg_color' => 'success',
-            'text_dark' => false,
+            'text_dark' => true,
         ],
         7 => [
             'name' => 'MySQL',
@@ -39,12 +39,12 @@ return [
         8 => [
             'name' => 'PHP',
             'bg_color' => 'info',
-            'text_dark' => false,
+            'text_dark' => true,
         ],
         9 => [
             'name' => 'JavaScript',
             'bg_color' => 'warning',
-            'text_dark' => false,
+            'text_dark' => true,
         ],
         10 => [
             'name' => 'Sass',

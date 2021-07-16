@@ -17,6 +17,11 @@ div.contact-container
     {
         max-height: 22.5vh;
         z-index: 10;
+
+        @media only screen and (max-width: 700px)
+        {
+            max-height: 12.5vh;
+        }
     }
 
     a.contact-anchor

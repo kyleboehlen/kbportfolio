@@ -30,6 +30,12 @@ Auth::routes([
 // Index
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
+// Software
+Route::prefix('software')->group(function(){
+    // View the list of software projects
+    Route::get('/', [SoftwareController::class, 'projects'])->name('software');
+});
+
 // Contact
 Route::prefix('contact')->group(function(){
     // Index
@@ -53,6 +59,8 @@ Route::group(['prefix' => 'admin',  'middleware' => 'admin.alert'], function(){
     // Software
     Route::prefix('software')->group(function(){
         // Index
+        Route::get('/', [AdminController::class, 'software'])->name('admin.software');
+
         // Admin add routes
         Route::get('add', [SoftwareController::class, 'add'])->name('admin.software.add');
         Route::post('add', [SoftwareController::class, 'store'])->name('admin.software.store');

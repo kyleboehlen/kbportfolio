@@ -10,7 +10,7 @@ use App\Http\Requests\Resume\UpdateRequest;
 class ResumeController extends Controller
 {
     /**
-     * Instantiate a new UserController instance.
+     * Instantiate a new ResumeController instance.
      */
     public function __construct()
     {
