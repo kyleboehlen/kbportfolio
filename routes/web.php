@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PhotographyController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\SoftwareController;
 
@@ -53,7 +54,33 @@ Route::group(['prefix' => 'admin',  'middleware' => 'admin.alert'], function(){
     // Photography
     Route::prefix('photography')->group(function(){
         // Index
-        Route::get('/', [AdminController::class, 'index'])->name('admin.photography');
+        Route::get('/', [AdminController::class, 'photography'])->name('admin.photography');
+
+        // Shoots
+        Route::prefix('shoots')->group(function(){
+            // Add
+            Route::get('add', [PhotographyController::class, 'addShoot'])->name('admin.photography.shoot.add');
+            Route::post('add', [PhotographyController::class, 'storeShoot'])->name('admin.photography.shoot.store');
+
+            // Manage
+            Route::get('edit/{shoot_id?}', [PhotographyController::class, 'editShoot'])->name('admin.photography.shoot.edit');
+            Route::post('edit/{shoot_id}', [PhotographyController::class, 'updateShoot'])->name('admin.photography.shoot.update');
+
+            // Delete
+            Route::post('destroy/{shoot_id}', [PhotographyController::class, 'destroyShoot'])->name('admin.photography.shoot.destroy');
+        });
+
+        // Photos
+        Route::prefix('photos')->group(function(){
+            // Manage
+            Route::get('edit/{shoot_id?}', [PhotographyController::class, 'editPhotos'])->name('admin.photography.photos.edit');
+
+            // Update
+            Route::post('edit/{photo_id}', [PhotographyController::class, 'updatePhoto'])->name('admin.photography.photo.update');
+
+            // Delete
+            Route::post('destroy/{photo_id}', [PhotographyController::class, 'destroyPhoto'])->name('admin.photography.photo.destroy');
+        });
     });
 
     // Software

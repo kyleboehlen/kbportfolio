@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 // Models
 use App\Models\User;
 use App\Models\Software\Technologies;
+use App\Models\Photography\Categories;
 
 class DatabaseSeeder extends Seeder
 {
@@ -40,6 +41,14 @@ class DatabaseSeeder extends Seeder
         foreach(config('software.technologies') as $key => $values)
         {
             Technologies::updateOrCreate(['id' => $key], $values);
+        }
+
+        // Seed categories
+        foreach(config('photography.categories') as $key => $value)
+        {
+            Categories::updateOrCreate(['id' => $key], [
+                'name' => $value
+            ]);
         }
     }
 }

@@ -15,7 +15,16 @@ class AdminController extends Controller
     {
         return view('admin.index');
     }
-        
+
+    /**
+     * Redirect to add shoot
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function photography()
+    {
+        return redirect()->route('admin.photography.shoot.add');
+    }
 
     /**
      * Redirect to view the add software project form
