@@ -44,10 +44,10 @@ class DatabaseSeeder extends Seeder
         }
 
         // Seed categories
-        foreach(config('photography.categories') as $key => $value)
+        foreach(config('photography.categories') as $key => $category)
         {
             Categories::updateOrCreate(['id' => $key], [
-                'name' => $value
+                'name' => $category['name']
             ]);
         }
     }

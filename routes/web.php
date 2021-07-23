@@ -63,23 +63,25 @@ Route::group(['prefix' => 'admin',  'middleware' => 'admin.alert'], function(){
             Route::post('add', [PhotographyController::class, 'storeShoot'])->name('admin.photography.shoot.store');
 
             // Manage
-            Route::get('edit/{shoot_id?}', [PhotographyController::class, 'editShoot'])->name('admin.photography.shoot.edit');
-            Route::post('edit/{shoot_id}', [PhotographyController::class, 'updateShoot'])->name('admin.photography.shoot.update');
+            Route::get('edit/{shoot?}', [PhotographyController::class, 'editShoot'])->name('admin.photography.shoot.edit');
+            Route::post('edit/{shoot}', [PhotographyController::class, 'updateShoot'])->name('admin.photography.shoot.update');
 
             // Delete
-            Route::post('destroy/{shoot_id}', [PhotographyController::class, 'destroyShoot'])->name('admin.photography.shoot.destroy');
+            Route::post('destroy/{shoot}', [PhotographyController::class, 'destroyShoot'])->name('admin.photography.shoot.destroy');
         });
 
         // Photos
         Route::prefix('photos')->group(function(){
-            // Manage
-            Route::get('edit/{shoot_id?}', [PhotographyController::class, 'editPhotos'])->name('admin.photography.photos.edit');
+            // Upload
+            Route::get('upload', [PhotographyController::class, 'uploadPhotos'])->name('admin.photography.photos.upload');
+            Route::post('store/{shoot}', [PhotographyController::class, 'storePhoto'])->name('admin.photography.photo.store');
 
-            // Update
-            Route::post('edit/{photo_id}', [PhotographyController::class, 'updatePhoto'])->name('admin.photography.photo.update');
+            // Manage
+            Route::get('edit/{shoot?}', [PhotographyController::class, 'editPhotos'])->name('admin.photography.photos.edit');
+            Route::post('edit/{photo}', [PhotographyController::class, 'updatePhoto'])->name('admin.photography.photo.update');
 
             // Delete
-            Route::post('destroy/{photo_id}', [PhotographyController::class, 'destroyPhoto'])->name('admin.photography.photo.destroy');
+            Route::post('destroy/{photo}', [PhotographyController::class, 'destroyPhoto'])->name('admin.photography.photo.destroy');
         });
     });
 
