@@ -73,7 +73,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'admin.alert'], function(){
         // Photos
         Route::prefix('photos')->group(function(){
             // Upload
-            Route::get('upload', [PhotographyController::class, 'uploadPhotos'])->name('admin.photography.photos.upload');
+            Route::get('upload/{shoot?}', [PhotographyController::class, 'uploadPhotos'])->name('admin.photography.photos.upload');
             Route::post('store/{shoot}', [PhotographyController::class, 'storePhoto'])->name('admin.photography.photo.store');
 
             // Manage

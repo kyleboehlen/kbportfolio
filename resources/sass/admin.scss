@@ -67,6 +67,12 @@ html, body
     z-index: 1;
 }
 
+// KV-file input
+.kv-fileinput-caption
+{
+    margin-right: 1.25%;
+}
+
 // This handles keeping everything else in front of the background for opacity reasons
 .background-z-index
 {

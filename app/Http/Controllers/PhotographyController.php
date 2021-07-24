@@ -8,6 +8,7 @@ use DB;
 
 // Models
 use App\Models\Photography\Shoots;
+use App\Models\Photography\Photos;
 
 // Requests
 use App\Http\Requests\Photography\ShootRequest;
@@ -268,6 +269,97 @@ class PhotographyController extends Controller
         return redirect()->route('admin.photography.shoot.edit')->with([
             'success_alert' => "Successfully deleted shoot $shoot->name",
         ]);
+    }
+
+    public function uploadPhotos(Shoots $shoot = null)
+    {
+        $shoots = Shoots::all();
+
+        $shoot_id = null;
+        if(!is_null($shoot))
+        {
+            $shoot_id = $shoot->id;
+        }
+
+        return view('admin.photography.photos.upload')->with([
+            'action_nav_opts' => $this->action_nav_opts,
+            'card_header' => 'Upload Photos',
+            'shoots' => $shoots,
+            'shoot_id' => $shoot_id,
+        ]);
+    }
+
+    public function storePhoto(Shoots $shoot, Request $request)
+    {
+        if(\Auth::check())
+        {
+            // Load other photos in shoot
+            $shoot->load('photos');
+
+            // Create photo
+            $caption = $shoot->name . ' - ' . ($shoot->photos->count() + 1);
+            $photo = new Photos([
+                'caption' => $caption,
+                'shoot_id' => $shoot->id,
+            ]);
+
+            // Upload image
+            $path = 'public/images/photography/fullres';
+            $photo->full_res = str_replace($path . '/', '', $request->file->store($path));
+
+            // Save photo entry
+            if(!$photo->save())
+            {
+                // Log error
+                Log::error('Failed to save new photo', [
+                    'photo' => $photo->toArray(),
+                    'shoot' => $shoot->toArray(),
+                    'request' => $request->all(),
+                ]);
+
+                // Return json error
+                return response()->json([
+                    'error' => 'Failed to save photo, see logs.',
+                ]);
+            }
+
+            // Create thumbnail version
+            
+
+            // Assign categories
+            $shoot->setCategoriesArray();
+            foreach(config('photography.categories') as $id => $category)
+            {
+                $errors = 0;
+                if(in_array($id, $shoot->categories))
+                {
+                    if(!DB::table('photo_categories')->insert([
+                        'photo_id' => $photo->id,
+                        'category_id' => $id,
+                    ]))
+                    {
+                        // Log error
+                        $category_name = $category['name'];
+                        Log::error("Failed to associated default shoot category $category_name to photo $photo->name", [
+                            'photo->id' => $photo->id,
+                            'category_id' => $id,
+                        ]);
+
+                        $errors++;
+                    }
+                }
+
+                if($errors > 0)
+                {
+                    // Return json error
+                    return response()->json([
+                        'error' => "Failed to associate $errors categories to photo, see logs.",
+                    ]);
+                }
+            }
+        }
+
+        return response()->json();
     }
     {
         

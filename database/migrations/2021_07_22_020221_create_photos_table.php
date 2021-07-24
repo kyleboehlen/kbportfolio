@@ -15,11 +15,15 @@ class CreatePhotosTable extends Migration
     {
         Schema::create('photos', function (Blueprint $table) {
             $table->id(); // PK
-            $table->string('caption')->nullable();
+            $table->bigInteger('shoot_id')->unsigned(); // Shoots FK
+            $table->string('caption');
             $table->string('full_res');
-            $table->string('thumbnail')->nullable();
+            $table->string('compressed')->nullable();
             $table->boolean('show_on_home')->default(0);
             $table->timestamps(); // Laravel timestamps
+
+            // Constraints
+            $table->foreign('shoot_id')->references('id')->on('shoots');
         });
     }
 

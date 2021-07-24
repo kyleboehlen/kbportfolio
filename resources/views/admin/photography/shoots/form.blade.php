@@ -1,6 +1,16 @@
 @extends('admin.panel')
 
 @section('contents')
+    @isset($shoot)
+        <div class="row justify-content-center mt-1 mb-4">
+            <div class="col-12 col-md-4">
+                <a href="{{ route('admin.photography.photos.upload', ['shoot' => $shoot->id]) }}" class="btn btn-primary fs-2">
+                    <img src="/storage/icons/upload.png" /> &nbsp;Upload Photos
+                </a>
+            </div>
+        </div>
+    @endisset
+
     <div class="row justify-content-center mt-4">
         <div class="col-12 col-md-8">
             <form action="{{ isset($shoot) ? route('admin.photography.shoot.update', ['shoot' => $shoot->id]) : route('admin.photography.shoot.store') }}"
