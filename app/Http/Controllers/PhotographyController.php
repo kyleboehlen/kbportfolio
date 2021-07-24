@@ -10,7 +10,7 @@ use DB;
 use App\Models\Photography\Shoots;
 
 // Requests
-use App\Http\Requests\Photography\StoreShootRequest;
+use App\Http\Requests\Photography\ShootRequest;
 
 class PhotographyController extends Controller
 {
@@ -61,7 +61,7 @@ class PhotographyController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function storeShoot(StoreShootRequest $request)
+    public function storeShoot(ShootRequest $request)
     {
         // Create a new shoot
         $shoot = new Shoots([
@@ -140,7 +140,107 @@ class PhotographyController extends Controller
         ]);
     }
 
-    public function editShoot(Shoots $shoot)
+    /**
+     * Returns either the view to select a shoot to edit or
+     * the shoot form with all the values filled in to edit
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function editShoot(Shoots $shoot = null)
+    {
+        if(!is_null($shoot))
+        {
+            $shoot->setCategoriesArray();
+
+            return view('admin.photography.shoots.form')->with([
+                'action_nav_opts' => $this->action_nav_opts,
+                'card_header' => 'Edit Shoot',
+                'shoot' => $shoot,
+            ]);
+        }
+
+        // Get all shoots
+        $shoots = Shoots::all();
+
+        // Return the shoot selector view
+        return view('admin.photography.shoots.selector')->with([
+            'action_nav_opts' => $this->action_nav_opts,
+            'card_header' => 'Select Shoot',
+            'shoots' => $shoots,
+        ]);
+    }
+
+    public function updateShoot(Shoots $shoot, ShootRequest $request)
+    {
+        if(\Auth::check())
+        {
+            // Update name
+            $shoot->name = $request->get('name');
+
+            // Set shot on date
+            if($request->has('date'))
+            {
+                $date = $request->get('date');
+                if(!is_null($date))
+                {
+                    $shoot->shot_on = Carbon::parse($date)->format('Y-m-d');
+                }
+                else
+                {
+                    $shoot->shot_on = null;
+                }
+            }
+            else
+            {
+                $shoot->shot_on = null;
+            }
+
+            // Update shoot description
+            $shoot->desc = $request->get('desc');
+
+            // Save the shoot
+            if(!$shoot->save())
+            {
+                // Log errors
+                Log::error('Failed to update shoot shoot', [
+                    'shoot' => $shoot->toArray(),
+                    'request' => $request->all(),
+                ]);
+
+                // Return errors
+                return redirect()->back()->with([
+                    'failure_alert' => 'Failed to update shoot, see logs',
+                ]);
+            }
+
+            // Clear the categories relationship table
+            DB::table('shoot_categories')->where('shoot_id', $shoot->id)->delete();
+
+            // Associate default shoot categories
+            foreach(config('photography.categories') as $id => $category)
+            {
+                if($request->has("category-$id"))
+                {
+                    if(!DB::table('shoot_categories')->insert([
+                        'shoot_id' => $shoot->id,
+                        'category_id' => $id,
+                    ]))
+                    {
+                        // Log error
+                        $category_name = $category['name'];
+                        Log::error("Failed to save category $category_name as a default category when updating shoot $shoot->name", [
+                            'shoot->id' => $shoot->id,
+                            'category_id' => $id,
+                        ]);
+                    }
+                }
+            }
+        }
+
+        return redirect()->route('admin.photography.shoot.edit', ['shoot' => $shoot->id])->with([
+            'success_alert' => "Updated shoot $shoot->name",
+        ]);
+    }
     {
         
     }

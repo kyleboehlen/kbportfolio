@@ -19,5 +19,11 @@ $(document).ready(function(){
         {
             $('#codebase-link-input').prop('disabled', false);
         }
-      });
+    });
+
+    // Shoot selector
+    $('#shoot-selector').on('change', function(){
+        var shoot_id = $(this).find(':selected').val();
+        window.location.replace(window.location.href + '/' + shoot_id);
+    });
 });

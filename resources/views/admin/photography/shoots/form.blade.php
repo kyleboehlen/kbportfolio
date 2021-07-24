@@ -1,7 +1,7 @@
 @extends('admin.panel')
 
 @section('contents')
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-4">
         <div class="col-12 col-md-8">
             <form action="{{ isset($shoot) ? route('admin.photography.shoot.update', ['shoot' => $shoot->id]) : route('admin.photography.shoot.store') }}" method="POST">
                 @csrf
