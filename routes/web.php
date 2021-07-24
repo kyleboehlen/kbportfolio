@@ -97,6 +97,9 @@ Route::group(['prefix' => 'admin',  'middleware' => 'admin.alert'], function(){
         // Admin edit routes
         Route::get('edit/{project}', [SoftwareController::class, 'edit'])->name('admin.software.edit');
         Route::post('edit/{project}', [SoftwareController::class, 'update'])->name('admin.software.update');
+
+        // Admin delete software project
+        Route::post('destroy/{project}', [SoftwareController::class, 'destroy'])->name('admin.software.destroy');
     });
 
     // Resume

@@ -214,4 +214,27 @@ class SoftwareController extends Controller
             'success_alert' => "Updated software project $project->name",
         ]);
     }
+
+    public function destroy(Projects $project)
+    {
+        if(\Auth::check())
+        {
+            if(!$project->delete())
+            {
+                // Log errors
+                Log::error('Failed to delete software project', [
+                    'project' => $project->toArray(),
+                ]);
+
+                // Return errors
+                return redirect()->back()->with([
+                    'failure_alert' => 'Failed to delete software project, see logs',
+                ]);
+            }
+        }
+
+        return redirect()->route('admin.software.add')->with([
+            'success_alert' => "Successfully deleted software project $project->name",
+        ]);
+    }
 }

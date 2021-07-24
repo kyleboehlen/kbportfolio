@@ -22,6 +22,7 @@ class CreateSoftwareProjectsTable extends Migration
             $table->string('codebase_link')->nullable();
             $table->string('app_link');
             $table->timestamps(); // Laravel timestamps
+            $table->softDeletes(); // Laravel soft deletes
         });
     }
 

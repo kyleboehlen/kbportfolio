@@ -4,12 +4,12 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-8">
             <form action="{{ isset($project) ? route('admin.software.update', ['project' => $project->id]) : route('admin.software.add') }}"
-                    method="POST" enctype="multipart/form-data">
+                    method="POST" enctype="multipart/form-data" class="mb-3">
                 @csrf
 
                 {{-- Name --}}
                 <div class="mb-3">
-                    <input type="text" class="form-control-lg" name="name" placeholder="Project Name" style="width: 100%;" required
+                    <input type="text" class="form-control-lg hide-delete-btn" name="name" placeholder="Project Name" style="width: 100%;" required
                         value="{{ old('name') ?? (isset($project) ? $project->name : '') }}"/>
                     @error('name')
                         <p class="text-danger fs-5">{{ $message }}</p>
@@ -18,7 +18,7 @@
 
                 {{-- Type --}}
                 <div class="mb-3">
-                    <select class="form-select" name="type" required>
+                    <select class="form-select hide-delete-btn" name="type" required>
                         <option selected disabled>Select Project Type</option>
                         @foreach(config('software.enum.type') as $type)
                             <option value="{{ $type }}" @if(old('type') == $type || (isset($project) && $project->type == $type)) selected @endif>
@@ -84,8 +84,20 @@
                 </div>
 
                 {{-- Submit --}}
-                <button type="submit" class="btn btn-success mt-3" style="width: 100%;">@isset($project) Update @else Create @endisset</button>
+                <button type="submit" class="btn btn-success mt-1" style="width: 100%;">@isset($project) Update @else Create @endisset</button>
             </form>
+
+            {{-- Delete --}}
+            @isset($project)
+                <form id="delete-project-form" action="{{ route('admin.software.destroy', ['project' => $project->id]) }}" method="POST">
+                    @csrf
+
+                    <button type="submit" class="btn btn-danger mt-3" style="width: 100%;"
+                        onclick="event.preventDefault(); verifyDeleteForm('Are you sure you want to delete this software project?', '#delete-project-form')">
+                        Delete
+                    </button>
+                </form>
+            @endisset
         </div>
     </div>
 @endsection
