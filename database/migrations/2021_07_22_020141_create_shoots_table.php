@@ -19,6 +19,7 @@ class CreateShootsTable extends Migration
             $table->date('shot_on')->nullable();
             $table->text('desc')->nullable();
             $table->timestamps(); // Laravel timestamps
+            $table->softDeletes(); // Laravel soft deletes
         });
     }
 

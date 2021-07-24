@@ -3,7 +3,8 @@
 @section('contents')
     <div class="row justify-content-center mt-4">
         <div class="col-12 col-md-8">
-            <form action="{{ isset($shoot) ? route('admin.photography.shoot.update', ['shoot' => $shoot->id]) : route('admin.photography.shoot.store') }}" method="POST">
+            <form action="{{ isset($shoot) ? route('admin.photography.shoot.update', ['shoot' => $shoot->id]) : route('admin.photography.shoot.store') }}"
+                class="mb-6" method="POST">
                 @csrf
 
                 {{-- Name --}}
@@ -43,8 +44,22 @@
                 </div>
 
                 {{-- Submit --}}
-                <button type="submit" class="btn btn-success mt-3" style="width: 100%;">@isset($shoot) Update @else Create @endisset</button>
+                <button type="submit" class="btn btn-success mt-3" style="width: 100%;">
+                    @isset($shoot) Update @else Create @endisset
+                </button>
             </form>
+
+            {{-- Delete --}}
+            @isset($shoot)
+                <form id="delete-shoot-form" action="{{ route('admin.photography.shoot.destroy', ['shoot' => $shoot->id]) }}" method="POST">
+                    @csrf
+
+                    <button type="submit" class="btn btn-danger mt-5" style="width: 100%;"
+                        onclick="event.preventDefault(); verifyDeleteForm('Are you sure you want to delete this shoot?', '#delete-shoot-form')">
+                        Delete
+                    </button>
+                </form>
+            @endisset
         </div>
     </div>
 @endsection

@@ -27,3 +27,22 @@ $(document).ready(function(){
         window.location.replace(window.location.href + '/' + shoot_id);
     });
 });
+
+window.verifyDeleteForm = function (message, formID){
+    swal.fire({
+        title: 'Delete?',
+        icon: 'warning',
+        iconColor: '#e3342f',
+        html: `<p class="alert-text">` + message + `</p>`,
+        padding: '.5rem',
+        showCancelButton: true,
+        confirmButtonColor: '#e3342f',
+        cancelButtonColor: '#38c172',
+        confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+        if(result.isConfirmed)
+        {
+            $(formID).submit();
+        }
+    });
+}

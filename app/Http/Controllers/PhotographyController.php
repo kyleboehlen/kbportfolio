@@ -202,7 +202,7 @@ class PhotographyController extends Controller
             if(!$shoot->save())
             {
                 // Log errors
-                Log::error('Failed to update shoot shoot', [
+                Log::error('Failed to update shoot', [
                     'shoot' => $shoot->toArray(),
                     'request' => $request->all(),
                 ]);
@@ -239,6 +239,34 @@ class PhotographyController extends Controller
 
         return redirect()->route('admin.photography.shoot.edit', ['shoot' => $shoot->id])->with([
             'success_alert' => "Updated shoot $shoot->name",
+        ]);
+    }
+
+    /**
+     * Delete the selected shoot
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroyShoot(Shoots $shoot)
+    {
+        if(\Auth::check())
+        {
+            if(!$shoot->delete())
+            {
+                // Log errors
+                Log::error('Failed to delete shoot', [
+                    'shoot' => $shoot->toArray(),
+                ]);
+
+                // Return errors
+                return redirect()->back()->with([
+                    'failure_alert' => 'Failed to delete shoot, see logs',
+                ]);
+            }
+        }
+
+        return redirect()->route('admin.photography.shoot.edit')->with([
+            'success_alert' => "Successfully deleted shoot $shoot->name",
         ]);
     }
     {
