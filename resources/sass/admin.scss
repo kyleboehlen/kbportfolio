@@ -70,8 +70,15 @@ html, body
 // KV-file input
 .kv-fileinput-caption
 {
+    color: $white;
     margin-right: 1.25%;
 }
+
+.file-caption-info, .file-size-info, .kv-file-remove
+{
+    color: $white;
+}
+
 
 // This handles keeping everything else in front of the background for opacity reasons
 .background-z-index

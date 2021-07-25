@@ -63,7 +63,7 @@
         {{-- Shoot select --}}
         <div class="row justify-content-center">
             <div class="col-12 col-lg-6">
-                <select class="form-select form-select-lg mt-1 mb-3" id="upload-photos-selector">
+                <select class="form-select form-select-lg mt-5 mb-3" id="upload-photos-selector">
                     @if(is_null($shoot_id))
                         <option disabled selected>Select a shoot to upload photos</option>
                     @endif

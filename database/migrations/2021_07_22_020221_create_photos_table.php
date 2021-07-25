@@ -17,8 +17,7 @@ class CreatePhotosTable extends Migration
             $table->id(); // PK
             $table->bigInteger('shoot_id')->unsigned(); // Shoots FK
             $table->string('caption');
-            $table->string('full_res');
-            $table->string('compressed')->nullable();
+            $table->string('asset');
             $table->boolean('show_on_home')->default(0);
             $table->timestamps(); // Laravel timestamps
 
