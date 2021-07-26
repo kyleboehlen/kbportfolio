@@ -377,6 +377,35 @@ class PhotographyController extends Controller
 
         return response()->json();
     }
+
+    public function editPhotos(Shoots $shoot = null)
+    {
+        if(!is_null($shoot))
+        {
+            $shoot->load('photos');
+
+            foreach($shoot->photos as $photo)
+            {
+                $photo->setCategoriesArray();
+            }
+
+            return view('admin.photography.photos.manage')->with([
+                'action_nav_opts' => $this->action_nav_opts,
+                'card_header' => 'Edit Photos',
+                'shoot' => $shoot,
+            ]);
+        }
+
+        // Get all shoots
+        $shoots = Shoots::all();
+
+        // Return the shoot selector view
+        return view('admin.photography.shoots.selector')->with([
+            'action_nav_opts' => $this->action_nav_opts,
+            'card_header' => 'Select Shoot',
+            'shoots' => $shoots,
+        ]);
+    }
     {
         
     }
