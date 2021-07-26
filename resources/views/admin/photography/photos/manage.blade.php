@@ -12,7 +12,9 @@
                 {{-- Update form --}}
                 <div class="card" style="height: 100%;">
                     <form class="d-flex flex-column" style="height: 100%;"
-                        action="{{ route('admin.photography.photo.update', ['photo' => $photo->id]) }}" method="POST"> 
+                        action="{{ route('admin.photography.photo.update', ['photo' => $photo->id]) }}" method="POST">
+                        @csrf
+                        
                         <div class="card-header p-1 pb-2 d-flex">
                             {{-- Show on home checkbox --}}
                             <input type="checkbox" class="btn-check" name="show-on-home" id="show-on-home-{{ $photo->id }}" autocomplete="off"
@@ -25,7 +27,7 @@
                             <div style="min-width: 2.5%"></div>
 
                             {{-- Caption --}}
-                            <input type="text" class="form-control" value="{{ $photo->caption }}" required />
+                            <input type="text" class="form-control" name="caption" value="{{ $photo->caption }}" required />
                         </div>
 
                         {{-- Preview image --}}

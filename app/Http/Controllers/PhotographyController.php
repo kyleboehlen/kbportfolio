@@ -13,6 +13,7 @@ use App\Models\Photography\Photos;
 
 // Requests
 use App\Http\Requests\Photography\ShootRequest;
+use App\Http\Requests\Photography\PhotoRequest;
 
 class PhotographyController extends Controller
 {
@@ -406,8 +407,61 @@ class PhotographyController extends Controller
             'shoots' => $shoots,
         ]);
     }
+
+    public function updatePhoto(Photos $photo, PhotoRequest $request)
     {
-        
+        if(\Auth::check())
+        {
+            // Update caption
+            $photo->caption = $request->get('caption');
+
+            // Update photo show on home
+            $photo->show_on_home = $request->has('show-on-home');
+
+            // Save the photo
+            if(!$photo->save())
+            {
+                // Log errors
+                Log::error('Failed to update photo', [
+                    'photo' => $photo->toArray(),
+                    'request' => $request->all(),
+                ]);
+
+                // Return errors
+                return redirect()->back()->with([
+                    'failure_alert' => 'Failed to update photo, see logs',
+                ]);
+            }
+
+            // Clear the categories relationship table
+            DB::table('photo_categories')->where('photo_id', $photo->id)->delete();
+
+            // Associate default shoot categories
+            foreach(config('photography.categories') as $id => $category)
+            {
+                if($request->has("category-$id"))
+                {
+                    if(!DB::table('photo_categories')->insert([
+                        'photo_id' => $photo->id,
+                        'category_id' => $id,
+                    ]))
+                    {
+                        // Log error
+                        $category_name = $category['name'];
+                        Log::error("Failed to save category $category_name to photo $photo->name", [
+                            'photo->id' => $photo->id,
+                            'category_id' => $id,
+                        ]);
+                    }
+                }
+            }
+        }
+
+        return redirect()->route('admin.photography.photos.edit', ['shoot' => $photo->shoot_id])->with([
+            'success_alert' => "Updated photo $photo->caption",
+        ]);
+    }
+
     public function destroyPhoto(Photos $photo)
     {
         if(\Auth::check())
