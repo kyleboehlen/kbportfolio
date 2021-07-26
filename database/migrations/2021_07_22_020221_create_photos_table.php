@@ -20,6 +20,7 @@ class CreatePhotosTable extends Migration
             $table->string('asset');
             $table->boolean('show_on_home')->default(0);
             $table->timestamps(); // Laravel timestamps
+            $table->softDeletes(); // Laravel soft deletes
 
             // Constraints
             $table->foreign('shoot_id')->references('id')->on('shoots');

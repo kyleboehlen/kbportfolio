@@ -408,5 +408,28 @@ class PhotographyController extends Controller
     }
     {
         
+    public function destroyPhoto(Photos $photo)
+    {
+        if(\Auth::check())
+        {
+            if(!$photo->delete())
+            {
+                // Log errors
+                Log::error('Failed to delete photo', [
+                    'photo' => $photo->toArray(),
+                ]);
+
+                // Return errors
+                return redirect()->back()->with([
+                    'failure_alert' => 'Failed to delete shoot, see logs',
+                ]);
+            }
+        }
+
+        return redirect()->route('admin.photography.photos.edit', [
+            'shoot' => $photo->shoot_id,
+        ])->with([
+            'success_alert' => "Successfully deleted photo $photo->caption",
+        ]);
     }
 }

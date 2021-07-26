@@ -3,10 +3,13 @@
 namespace App\Models\Photography;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
 
 class Photos extends Model
 {
+    use SoftDeletes;
+    
     protected $fillable = [
         'caption', 'shoot_id',
     ];

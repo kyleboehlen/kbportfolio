@@ -3,10 +3,13 @@
 @section('contents')
     <div class="row">
         @foreach($shoot->photos as $photo)
-            {{-- Delete form --}}
-
-            {{-- Update form --}}
             <div class="col-12 col-sm-6 col-xl-4 mb-3">
+                {{-- Delete form --}}
+                <form action="{{ route('admin.photography.photo.destroy', ['photo' => $photo->id]) }}" id="delete-photo-{{ $photo->id }}" method="POST">
+                    @csrf
+                </form>
+
+                {{-- Update form --}}
                 <div class="card" style="height: 100%;">
                     <form class="d-flex flex-column" style="height: 100%;"
                         action="{{ route('admin.photography.photo.update', ['photo' => $photo->id]) }}" method="POST"> 
@@ -47,7 +50,8 @@
                         
                         <div class="card-footer d-flex">
                             {{-- Delete button --}}
-                            <button type="button" class="btn btn-danger">
+                            <button type="button" class="btn btn-danger"
+                                onclick="verifyDeleteForm('Are you sure you want to delete this photo?', '#delete-photo-{{ $photo->id }}')">
                                 <img src="/storage/icons/delete.png" />
                             </button>
 
