@@ -13,14 +13,14 @@
         @if(config('app.env') == 'local')
             <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         @else
-            <script type="text/javascript" src="{{ mix('assets/js/app.js') }}"></script>
+            <script type="text/javascript" src="{{ mix('/js/app.js') }}"></script>
         @endif
         
         <!-- Styles -->
         @if(config('app.env') == 'local')
             <link href="@isset($stylesheet) {{ asset("css/$stylesheet.css") }} @else {{ asset('css/app.css') }} @endisset" rel="stylesheet">
         @else
-            <link href="@isset($stylesheet) {{ mix("assets/css/$stylesheet.css") }} @else {{ mix('assets/css/app.css') }} @endisset" rel="stylesheet">
+            <link href="@isset($stylesheet) {{ mix("/css/$stylesheet.css") }} @else {{ mix('/css/app.css') }} @endisset" rel="stylesheet">
         @endif
 
         <!-- Icons -->
