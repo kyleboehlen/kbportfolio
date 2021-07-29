@@ -86,7 +86,7 @@ $(document).ready(function(){
         full_res_img.attr('src', asset_src);
 
         full_res_img.on('load', function(){
-            $(this).show();
+            $(this).fadeIn(500);
             $('#full-res-loader').hide();
         });
     });
