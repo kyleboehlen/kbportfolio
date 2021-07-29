@@ -65,7 +65,7 @@ class PhotographyController extends Controller
                     DB::table('photo_categories')
                         ->whereIn('category_id', $filter_categories)
                         ->get()->pluck('photo_id')->toArray();
-                        
+
                 $photos = $photos->whereIn('id', $photo_ids);
             }
         }
@@ -78,6 +78,40 @@ class PhotographyController extends Controller
             'photos' => $photos,
         ]);
     }
+
+    /**
+     * Return the photography view with photos
+     * from a specific shoot
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function viewShoot(Request $request, Shoots $shoot)
+    {
+        $photos = Photos::where('shoot_id', $shoot->id);
+
+        $filter_categories = array();
+        if($request->has('filters'))
+        {
+            $filter_categories = $request->get('filters');
+            if(count($filter_categories) > 0)
+            {
+                $photo_ids =
+                    DB::table('photo_categories')
+                        ->whereIn('category_id', $filter_categories)
+                        ->get()->pluck('photo_id')->toArray();
+                $photos = $photos->whereIn('id', $photo_ids);
+            }
+        }
+        
+        $photos = $photos->get();
+
+        return view('photography')->with([
+            'stylesheet' => 'photography',
+            'filter_categories' => $filter_categories,
+            'photos' => $photos,
+        ]);
+    }
+
     /**
      * Return the view with the form to add a shoot
      *

@@ -35,6 +35,9 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::prefix('photography')->group(function(){
     // View show on home images
     Route::get('/', [PhotographyController::class, 'index'])->name('photography');
+
+    // View shoot
+    Route::get('shoot/{shoot}', [PhotographyController::class, 'viewShoot'])->name('photography.shoot');
 });
 
 // Software
