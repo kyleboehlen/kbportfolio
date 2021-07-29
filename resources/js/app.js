@@ -67,12 +67,16 @@ $(document).ready(function(){
         $('#full-size-viewer').show();
 
         var shoot_id = $(this).data('shoot-id');
-        var shoot_url = $('#viewer-shoot-link').attr('href');
 
-        shoot_url = shoot_url.substring(0, shoot_url.lastIndexOf('/'));
-        shoot_url = shoot_url + '/' + shoot_id;
+        if($('#viewer-shoot-link').length)
+        {
+            var shoot_url = $('#viewer-shoot-link').attr('href');
 
-        $('#viewer-shoot-link').attr('href', shoot_url);
+            shoot_url = shoot_url.substring(0, shoot_url.lastIndexOf('/'));
+            shoot_url = shoot_url + '/' + shoot_id;
+    
+            $('#viewer-shoot-link').attr('href', shoot_url);
+        }
 
         var photo_id = $(this).data('photo-id');
         var full_res_img = $('#full-res-img-' + photo_id);
@@ -84,6 +88,11 @@ $(document).ready(function(){
         asset_src = asset_src + '/' + asset;
 
         full_res_img.attr('src', asset_src);
+
+        if($('#download-link').length)
+        {
+            $('#download-link').attr('href', asset_src);
+        }
 
         full_res_img.on('load', function(){
             $(this).fadeIn(500);

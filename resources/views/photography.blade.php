@@ -41,9 +41,15 @@
                 <img src="/storage/icons/arrow-left.png" />
             </span> --}}
 
-            <a href="{{ route('photography.shoot', ['shoot' => 0]) }}" id="viewer-shoot-link" class="btn btn-primary" target="_blank">
-                <span class="fs-4">View Shoot</span>
-            </a>
+            @isset($shoot)
+                <a href="/storage/images/photography/fullres/" id="download-link" class="btn btn-primary" target="_blank" download>
+                    <span class="fs-4">Download</span>
+                </a>
+            @else
+                <a href="{{ route('photography.shoot', ['shoot' => 0]) }}" id="viewer-shoot-link" class="btn btn-primary" target="_blank">
+                    <span class="fs-4">View Shoot</span>
+                </a>
+            @endif
 
             {{-- <span id="viewer-right" class="badge rounded-pill bg-primary arrow-btns">
                 <img src="/storage/icons/arrow-right.png" />
@@ -55,10 +61,10 @@
         </div>
 
         <div id="full-res-container" class="d-flex justify-content-center align-content-center flex-grow-1">
-            <img id="full-res-loader" class="full-res-img" src="storage/images/loading.gif" />
+            <img id="full-res-loader" class="full-res-img" src="/storage/images/loading.gif" />
             
             @foreach($photos as $photo)
-                <img id="full-res-img-{{ $photo->id }}" class="full-res-img" src="storage/images/photography/fullres/"/>
+                <img id="full-res-img-{{ $photo->id }}" class="full-res-img" src="/storage/images/photography/fullres/"/>
             @endforeach
         </div>
     </div>

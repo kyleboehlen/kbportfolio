@@ -109,6 +109,7 @@ class PhotographyController extends Controller
             'stylesheet' => 'photography',
             'filter_categories' => $filter_categories,
             'photos' => $photos,
+            'shoot' => $shoot,
         ]);
     }
 
