@@ -70,7 +70,14 @@ class PhotographyController extends Controller
             }
         }
         
-        $photos = $photos->get();
+        $rand_seed = session('rand_seed');
+        if(is_null($rand_seed))
+        {
+            $rand_seed = rand(1000, 9999);
+            session(['rand_seed' => $rand_seed]);
+        }
+
+        $photos = $photos->inRandomOrder($rand_seed)->get();
 
         return view('photography')->with([
             'stylesheet' => 'photography',
