@@ -24,6 +24,7 @@
         "@popperjs/core": "^2.9.2",
         "bootstrap-fileinput": "^5.2.2",
         "jquery": "^3.5.1",
+        "jquery-lazy": "^1.7.11",
         "sweetalert2": "^11.0.18"
     }
 }

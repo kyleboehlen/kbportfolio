@@ -26,7 +26,7 @@
         @foreach($photos as $photo)
             <div class="photo-container d-flex justify-content-center" data-photo-id="{{ $photo->id }}"
                 data-asset="{{ $photo->asset }}" data-shoot-id="{{ $photo->shoot_id }}">
-                <img src="/storage/images/photography/compressed/{{ $photo->asset }}" />
+                <img class="lazy" data-src="/storage/images/photography/compressed/{{ $photo->asset }}" />
             </div>
         @endforeach
         <div class="photo-container">

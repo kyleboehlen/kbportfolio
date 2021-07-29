@@ -26,3 +26,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 // Require sweetalert
 window.swal = require('sweetalert2');
+
+// Require jquery lazy
+window._ = require('jquery-lazy');
