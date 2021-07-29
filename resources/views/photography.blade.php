@@ -10,7 +10,9 @@
         {{-- Filters --}}
         <div id="filters-container" class="d-flex flex-column justify-content-center mb-3">
             <button type="button" class="btn btn-primary fs-5" id="photography-filter-btn" data-bs-toggle="collapse"
-                data-bs-target="#filters-div" data-filters-changed="false">Filters</button>
+                data-bs-target="#filters-div" data-filters-changed="false">
+                Filters <img src="/storage/icons/filter.png"/>
+            </button>
             <div class="collapse" id="filters-div">
                 @foreach(config('photography.categories') as $id => $category)
                     <input type="checkbox" class="btn-check filter-btn-check" name="category-{{ $id }}" id="category-{{ $id }}" autocomplete="off"
