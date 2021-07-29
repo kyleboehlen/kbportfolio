@@ -157,28 +157,28 @@ div#full-size-viewer
             cursor: pointer;
         }
 
-        // span.arrow-btns
-        // {
-        //     padding: 7.5px;
-        //     padding-left: 15px;
-        //     padding-right: 15px;
-        // }
-
-        // span#viewer-left
-        // {
-        //     padding-right: 17.5px;
-        // }
-
-        // span#viewer-right
-        // {
-        //     padding-left: 17.5px;
-        // }
-
-        span#viewer-close
+        span.arrow-btns
         {
             padding: 7.5px;
             padding-left: 15px;
             padding-right: 15px;
+        }
+
+        span#viewer-left
+        {
+            padding-right: 17.5px;
+        }
+
+        span#viewer-right
+        {
+            padding-left: 17.5px;
+        }
+
+        span#viewer-close
+        {
+            padding: 7.5px;
+            padding-left: 20px;
+            padding-right: 20px;
         }
 
         a#viewer-shoot-link, a#download-link
@@ -188,6 +188,14 @@ div#full-size-viewer
             margin-right: 1%;
             padding-bottom: 0;
             padding-top: 2.5px;
+
+            @media only screen and (max-width: 330px)
+            {
+                & > span
+                {
+                    font-size: 1.15em !important;
+                }
+            }
         }
     }
     

@@ -25,7 +25,7 @@
         {{-- Photos --}}
         @foreach($photos as $photo)
             <div class="photo-container d-flex justify-content-center" data-photo-id="{{ $photo->id }}"
-                data-asset="{{ $photo->asset }}" data-shoot-id="{{ $photo->shoot_id }}">
+                data-asset="{{ $photo->asset }}" data-shoot-id="{{ $photo->shoot_id }}" id="photo-container-{{ $photo->id }}">
                 <img class="lazy" data-src="/storage/images/photography/compressed/{{ $photo->asset }}" />
             </div>
         @endforeach
@@ -35,11 +35,12 @@
     </div>
 
     {{-- Full size viewer --}}
-    <div id="full-size-viewer" class="flex-column justify-content-start">
+    <div id="full-size-viewer" class="flex-column justify-content-start"
+        data-photo-ids="{{ json_encode($photos->pluck('id')->toArray()); }}" data-photo-id="0">
         <div id="viewer-toolbar" class="d-flex justify-content-center">
-            {{-- <span id="viewer-left" class="badge rounded-pill bg-primary arrow-btns">
+            <span id="viewer-left" class="badge rounded-pill bg-primary arrow-btns">
                 <img src="/storage/icons/arrow-left.png" />
-            </span> --}}
+            </span>
 
             @isset($shoot)
                 <a href="/storage/images/photography/fullres/" id="download-link" class="btn btn-primary" target="_blank" download>
@@ -51,11 +52,11 @@
                 </a>
             @endif
 
-            {{-- <span id="viewer-right" class="badge rounded-pill bg-primary arrow-btns">
+            <span id="viewer-right" class="badge rounded-pill bg-primary arrow-btns">
                 <img src="/storage/icons/arrow-right.png" />
-            </span> --}}
+            </span>
 
-            <span id="viewer-close" class="badge rounded-pill bg-primary arrow-btns ms-auto">
+            <span id="viewer-close" class="badge rounded-pill bg-primary ms-auto">
                 <img src="/storage/icons/close.png" />
             </span>
         </div>
@@ -64,7 +65,7 @@
             <img id="full-res-loader" class="full-res-img" src="/storage/images/loading.gif" />
             
             @foreach($photos as $photo)
-                <img id="full-res-img-{{ $photo->id }}" class="full-res-img" src="/storage/images/photography/fullres/"/>
+                <img id="full-res-img-{{ $photo->id }}" class="full-res-img" src="/storage/images/photography/fullres/" />
             @endforeach
         </div>
     </div>

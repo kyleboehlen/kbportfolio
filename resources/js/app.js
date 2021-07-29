@@ -61,45 +61,91 @@ $(document).ready(function(){
         }
     });
 
+    jQuery.fn.extend({
+        showFullSize: function()
+        {
+            $('.full-res-img').hide();
+            $('#full-res-loader').show();
+    
+            $('#full-size-viewer').show();
+    
+            var shoot_id = $(this).data('shoot-id');
+    
+            if($('#viewer-shoot-link').length)
+            {
+                var shoot_url = $('#viewer-shoot-link').attr('href');
+    
+                shoot_url = shoot_url.substring(0, shoot_url.lastIndexOf('/'));
+                shoot_url = shoot_url + '/' + shoot_id;
+        
+                $('#viewer-shoot-link').attr('href', shoot_url);
+            }
+    
+            var photo_id = $(this).data('photo-id');
+
+            $('#full-size-viewer').data('photo-id', photo_id);
+
+            var full_res_img = $('#full-res-img-' + photo_id);
+    
+            var asset = $(this).data('asset');
+            var asset_src = full_res_img.attr('src');
+    
+            asset_src = asset_src.substring(0, asset_src.lastIndexOf('/'));
+            asset_src = asset_src + '/' + asset;
+    
+            full_res_img.attr('src', asset_src);
+    
+            if($('#download-link').length)
+            {
+                $('#download-link').attr('href', asset_src);
+            }
+    
+            full_res_img.on('load', function(){
+                $(this).fadeIn(500);
+                $('#full-res-loader').hide();
+            });
+        }
+    });
+
     // Full size viewer
     $('.photo-container').on('click', function(){
-        $('.full-res-img').hide();
-        $('#full-res-loader').show();
+        $(this).showFullSize();
+    });
 
-        $('#full-size-viewer').show();
+    $('#viewer-left').on('click', function(){
+        var photos_array = $('#full-size-viewer').data('photo-ids');
+        var photo_id = $('#full-size-viewer').data('photo-id');
+        var index = photos_array.indexOf(photo_id);
 
-        var shoot_id = $(this).data('shoot-id');
-
-        if($('#viewer-shoot-link').length)
+        if(index <= 0)
         {
-            var shoot_url = $('#viewer-shoot-link').attr('href');
-
-            shoot_url = shoot_url.substring(0, shoot_url.lastIndexOf('/'));
-            shoot_url = shoot_url + '/' + shoot_id;
-    
-            $('#viewer-shoot-link').attr('href', shoot_url);
+            index = photos_array.length - 1;
+        }
+        else
+        {
+            index--;
         }
 
-        var photo_id = $(this).data('photo-id');
-        var full_res_img = $('#full-res-img-' + photo_id);
+        photo_id = photos_array[index];
+        $('#photo-container-' + photo_id).showFullSize();
+    });
 
-        var asset = $(this).data('asset');
-        var asset_src = full_res_img.attr('src');
+    $('#viewer-right').on('click', function(){
+        var photos_array = $('#full-size-viewer').data('photo-ids');
+        var photo_id = $('#full-size-viewer').data('photo-id');
+        var index = photos_array.indexOf(photo_id);
 
-        asset_src = asset_src.substring(0, asset_src.lastIndexOf('/'));
-        asset_src = asset_src + '/' + asset;
-
-        full_res_img.attr('src', asset_src);
-
-        if($('#download-link').length)
+        if(index >= (photos_array.length - 1))
         {
-            $('#download-link').attr('href', asset_src);
+            index = 0;
+        }
+        else
+        {
+            index++;
         }
 
-        full_res_img.on('load', function(){
-            $(this).fadeIn(500);
-            $('#full-res-loader').hide();
-        });
+        photo_id = photos_array[index];
+        $('#photo-container-' + photo_id).showFullSize();
     });
 
     $('#viewer-close').on('click', function(){
