@@ -332,6 +332,23 @@ class PhotographyController extends Controller
                     'failure_alert' => 'Failed to delete shoot, see logs',
                 ]);
             }
+            else
+            {
+                $shoot->load('photos');
+
+                // Delete photos
+                foreach($shoot->photos as $photo)
+                {
+                    if(!$photo->delete())
+                    {
+                        // Log errors
+                        Log::error('Failed to delete photo when deleting shoot', [
+                            'photo' => $photo->toArray(),
+                            'shoot' => $shoot->toArray(),
+                        ]);
+                    }
+                }
+            }
         }
 
         return redirect()->route('admin.photography.shoot.edit')->with([
