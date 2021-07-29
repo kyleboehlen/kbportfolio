@@ -229,7 +229,7 @@ class PhotographyController extends Controller
         }
 
         // Get all shoots
-        $shoots = Shoots::all();
+        $shoots = Shoots::orderBy('name')->get();
 
         // Return the shoot selector view
         return view('admin.photography.shoots.selector')->with([
@@ -341,7 +341,7 @@ class PhotographyController extends Controller
 
     public function uploadPhotos(Shoots $shoot = null)
     {
-        $shoots = Shoots::all();
+        $shoots = Shoots::orderBy('name')->get();
 
         $shoot_id = null;
         if(!is_null($shoot))
@@ -464,7 +464,7 @@ class PhotographyController extends Controller
         }
 
         // Get all shoots
-        $shoots = Shoots::all();
+        $shoots = Shoots::orderBy('name')->get();
 
         // Return the shoot selector view
         return view('admin.photography.shoots.selector')->with([
