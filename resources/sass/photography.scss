@@ -92,6 +92,11 @@ div.photography-container
         height: 40vh;
         margin: 5px;
 
+        &:hover
+        {
+            cursor: zoom-in;
+        }
+
         &:last-child
         {
             color: $white;
@@ -112,6 +117,100 @@ div.photography-container
             max-height: 100%;
             right: 0;
             vertical-align: middle;
+        }
+    }
+}
+
+div#full-size-viewer
+{
+    background-color: rgba(0, 0, 0, .65);
+    border: 3px solid $black;
+    border-radius: 10px;
+    display: flex;
+    height: 99.5vh;
+    margin: .25%;
+    position: absolute;
+    width: 99.5%;
+    z-index: 10;
+
+    div#viewer-toolbar
+    {
+        background-color: rgba(0, 0, 0, .85);
+        padding: .5%;
+        width: 100%;
+
+        @media only screen and (max-width: 900px)
+        {
+            padding-bottom: 1%;
+        }
+
+        @media only screen and (max-width: 494px)
+        {
+            padding-bottom: 2.5%;
+            padding-top: 1.5%;
+        }
+
+        span:hover
+        {
+            background-color: #031c8f !important;
+            border-color: #031a86 !important;
+            cursor: pointer;
+        }
+
+        span.arrow-btns
+        {
+            padding: 7.5px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        span#viewer-left
+        {
+            padding-right: 17.5px;
+        }
+
+        span#viewer-right
+        {
+            padding-left: 17.5px;
+        }
+
+        span#viewer-close
+        {
+            padding: 7.5px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        a#viewer-shoot-link
+        {
+            color: $white;
+            margin-left: 1%;
+            margin-right: 1%;
+            padding-bottom: 0;
+            padding-top: 2.5px;
+        }
+    }
+    
+    div#full-res-container
+    {
+        max-height: 92.5vh;
+
+        img.full-res-img
+        {
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 10px;
+            display: inline-block;
+            flex-grow: 0;
+            flex-shrink: 0;
+            height: auto;
+            left: 0;
+            margin: auto;
+            max-width: 100%;
+            max-height: 100%;
+            right: 0;
+            width: auto;
         }
     }
 }

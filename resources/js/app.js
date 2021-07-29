@@ -57,7 +57,45 @@ $(document).ready(function(){
 
             window.location.replace(base_url + filter_param);
         }
-    })
+    });
+
+    // Full size viewer
+    $('.photo-container').on('click', function(){
+        $('.full-res-img').hide();
+        $('#full-res-loader').show();
+
+        $('#full-size-viewer').show();
+
+        var shoot_id = $(this).data('shoot-id');
+        var shoot_url = $('#viewer-shoot-link').attr('href');
+
+        shoot_url = shoot_url.substring(0, shoot_url.lastIndexOf('/'));
+        shoot_url = shoot_url + '/' + shoot_id;
+
+        $('#viewer-shoot-link').attr('href', shoot_url);
+
+        var photo_id = $(this).data('photo-id');
+        var full_res_img = $('#full-res-img-' + photo_id);
+
+        var asset = $(this).data('asset');
+        var asset_src = full_res_img.attr('src');
+
+        asset_src = asset_src.substring(0, asset_src.lastIndexOf('/'));
+        asset_src = asset_src + '/' + asset;
+
+        full_res_img.attr('src', asset_src);
+
+        full_res_img.on('load', function(){
+            $(this).show();
+            $('#full-res-loader').hide();
+        });
+    });
+
+    $('#viewer-close').on('click', function(){
+        $('#full-size-viewer').hide();
+    });
+
+    $('#full-size-viewer').hide();
 });
 
 window.verifyDeleteForm = function (message, formID){

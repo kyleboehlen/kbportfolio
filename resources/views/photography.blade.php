@@ -24,12 +24,42 @@
 
         {{-- Photos --}}
         @foreach($photos as $photo)
-            <div class="photo-container d-flex justify-content-center">
+            <div class="photo-container d-flex justify-content-center" data-photo-id="{{ $photo->id }}"
+                data-asset="{{ $photo->asset }}" data-shoot-id="{{ $photo->shoot_id }}">
                 <img src="/storage/images/photography/compressed/{{ $photo->asset }}" />
             </div>
         @endforeach
         <div class="photo-container">
             <p class="m-1">&copy; {{ \Carbon\Carbon::now()->format('Y') }} Kyle Boehlen</p>
+        </div>
+    </div>
+
+    {{-- Full size viewer --}}
+    <div id="full-size-viewer" class="flex-column justify-content-start">
+        <div id="viewer-toolbar" class="d-flex justify-content-center">
+            {{-- <span id="viewer-left" class="badge rounded-pill bg-primary arrow-btns">
+                <img src="/storage/icons/arrow-left.png" />
+            </span> --}}
+
+            <a href="{{ route('photography.shoot', ['shoot' => 0]) }}" id="viewer-shoot-link" class="btn btn-primary" target="_blank">
+                <span class="fs-4">View Shoot</span>
+            </a>
+
+            {{-- <span id="viewer-right" class="badge rounded-pill bg-primary arrow-btns">
+                <img src="/storage/icons/arrow-right.png" />
+            </span> --}}
+
+            <span id="viewer-close" class="badge rounded-pill bg-primary arrow-btns ms-auto">
+                <img src="/storage/icons/close.png" />
+            </span>
+        </div>
+
+        <div id="full-res-container" class="d-flex justify-content-center align-content-center flex-grow-1">
+            <img id="full-res-loader" class="full-res-img" src="storage/images/loading.gif" />
+            
+            @foreach($photos as $photo)
+                <img id="full-res-img-{{ $photo->id }}" class="full-res-img" src="storage/images/photography/fullres/"/>
+            @endforeach
         </div>
     </div>
 
