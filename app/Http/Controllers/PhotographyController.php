@@ -247,6 +247,11 @@ class PhotographyController extends Controller
         ]);
     }
 
+    /**
+     * Updates the properties of a photo shoot
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updateShoot(Shoots $shoot, ShootRequest $request)
     {
         if(\Auth::check())
@@ -364,6 +369,12 @@ class PhotographyController extends Controller
         ]);
     }
 
+    /**
+     * Returns the plugin to upload photos to a 
+     * selected shoot
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function uploadPhotos(Shoots $shoot = null)
     {
         $shoots = Shoots::orderBy('name')->get();
@@ -382,6 +393,12 @@ class PhotographyController extends Controller
         ]);
     }
 
+    /**
+     * Returns a json response with any errors after
+     * uploading a single photo async
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function storePhoto(Shoots $shoot, Request $request)
     {
         if(\Auth::check())
@@ -470,6 +487,12 @@ class PhotographyController extends Controller
         return response()->json();
     }
 
+    /**
+     * Returns the view to manaage all photos associated
+     * with the selected photoshoot
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function editPhotos(Shoots $shoot = null)
     {
         if(!is_null($shoot))
@@ -499,6 +522,12 @@ class PhotographyController extends Controller
         ]);
     }
 
+    /**
+     * Updates caption, categories, and show on home
+     * for a photo
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updatePhoto(Photos $photo, PhotoRequest $request)
     {
         if(\Auth::check())
@@ -553,6 +582,11 @@ class PhotographyController extends Controller
         ]);
     }
 
+    /**
+     * Destroy the selected photo
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroyPhoto(Photos $photo)
     {
         if(\Auth::check())

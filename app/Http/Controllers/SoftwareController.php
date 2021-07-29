@@ -41,6 +41,11 @@ class SoftwareController extends Controller
         }
     }
     
+     /**
+     * Returns the portfolio view of software projects
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function projects()
     {
         $projects = Projects::all();
@@ -58,6 +63,11 @@ class SoftwareController extends Controller
         ]);
     }
 
+    /**
+     * The admin form to create a new software project
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function add()
     {
         return view('admin.software.form')->with([
@@ -66,6 +76,11 @@ class SoftwareController extends Controller
         ]);
     }
 
+    /**
+     * Stores a new software project
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(StoreRequest $request)
     {
         // Create new project
@@ -137,6 +152,12 @@ class SoftwareController extends Controller
         ]);
     }
 
+    /**
+     * Returns the software project form populated
+     * with the data of the selected project
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function edit(Projects $project)
     {
         $project->setTechnologiesArray();
@@ -148,6 +169,12 @@ class SoftwareController extends Controller
         ]);
     }
 
+    /**
+     * Updates the properities and logo of 
+     * a software project
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(UpdateRequest $request, Projects $project)
     {
         if(\Auth::check())
@@ -215,6 +242,11 @@ class SoftwareController extends Controller
         ]);
     }
 
+    /**
+     * Soft deletes a software project
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(Projects $project)
     {
         if(\Auth::check())
