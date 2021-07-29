@@ -95,6 +95,12 @@ $(document).ready(function(){
         $('#full-size-viewer').hide();
     });
 
+    $('#full-res-container').on('click', function(){
+        $('#full-size-viewer').hide();
+    }).children().click(function(){
+        return false;
+    });
+
     $('#full-size-viewer').hide();
 });
 
