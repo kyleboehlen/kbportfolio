@@ -26,6 +26,38 @@ $(document).ready(function(){
         var shoot_id = $(this).find(':selected').val();
         window.location.replace(window.location.href + '/' + shoot_id);
     });
+
+    // Photography portfolio filter stuffs
+    $('.filter-btn-check').on('change', function(){
+        $('#photography-filter-btn').data('filters-changed', true);
+    });
+
+    $('#photography-filter-btn').on('click', function(){
+        if($(this).data('filters-changed'))
+        {
+            var base_url = window.location.pathname;
+            var filter_param = '';
+            var first = true;
+            $('.filter-btn-check').each(function(){
+                if($(this).is(':checked'))
+                {
+                    if(first)
+                    {
+                        filter_param = filter_param.concat('?');
+                        first = false;
+                    }
+                    else
+                    {
+                        filter_param = filter_param.concat('&');
+                    }
+
+                    filter_param = filter_param.concat('filters[]=' + $(this).data('filter-id'));
+                }
+            });
+
+            window.location.replace(base_url + filter_param);
+        }
+    })
 });
 
 window.verifyDeleteForm = function (message, formID){

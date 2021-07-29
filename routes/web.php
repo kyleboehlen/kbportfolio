@@ -31,6 +31,12 @@ Auth::routes([
 // Index
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
+// Photography
+Route::prefix('photography')->group(function(){
+    // View show on home images
+    Route::get('/', [PhotographyController::class, 'index'])->name('photography');
+});
+
 // Software
 Route::prefix('software')->group(function(){
     // View the list of software projects

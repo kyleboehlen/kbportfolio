@@ -51,10 +51,26 @@ class PhotographyController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $photos = Photos::where('show_on_home', 1);
+
         $filter_categories = array();
-        $photos = Photos::where('show_on_home', 1)->get();
+        if($request->has('filters'))
+        {
+            $filter_categories = $request->get('filters');
+            if(count($filter_categories) > 0)
+            {
+                $photo_ids =
+                    DB::table('photo_categories')
+                        ->whereIn('category_id', $filter_categories)
+                        ->get()->pluck('photo_id')->toArray();
+                        
+                $photos = $photos->whereIn('id', $photo_ids);
+            }
+        }
+        
+        $photos = $photos->get();
 
         return view('photography')->with([
             'stylesheet' => 'photography',

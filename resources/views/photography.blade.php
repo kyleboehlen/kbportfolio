@@ -16,7 +16,7 @@
             <div class="collapse" id="filters-div">
                 @foreach(config('photography.categories') as $id => $category)
                     <input type="checkbox" class="btn-check filter-btn-check" name="category-{{ $id }}" id="category-{{ $id }}" autocomplete="off"
-                        @if(in_array($id, $filter_categories)) checked @endif>
+                        data-filter-id="{{ $id }}" @if(in_array($id, $filter_categories)) checked @endif>
                     <label class="btn btn-outline-{{ $category['bg_color'] }} m-2 mt-3 mb-3" for="category-{{ $id }}">{{ $category['name'] }}</label>
                 @endforeach
             </div>
