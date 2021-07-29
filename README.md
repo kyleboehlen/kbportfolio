@@ -56,7 +56,7 @@ In order to allow laravel to handle URLs, make sure the apache mod_rewrite exten
 - Add the following to the directory settings
 
 ```
-   <Directory /var/www/html/pdphero/public>
+   <Directory /var/www/html/kbportfolio/public>
 
       Options Indexes FollowSymLinks
 
@@ -108,6 +108,11 @@ Run the database migration and seed
 `php artisan migrate`
 
 `php artisan db:seed`
+
+<br/>
+Set the admin password
+
+`php artisan admin:password`
 
 <br/>
 Change the php.ini file to let Laravel handle file upload sizes
