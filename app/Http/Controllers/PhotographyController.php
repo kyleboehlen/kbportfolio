@@ -47,6 +47,22 @@ class PhotographyController extends Controller
     }
 
     /**
+     * Return the main photography portfolio page
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        $filter_categories = array();
+        $photos = Photos::where('show_on_home', 1)->get();
+
+        return view('photography')->with([
+            'stylesheet' => 'photography',
+            'filter_categories' => $filter_categories,
+            'photos' => $photos,
+        ]);
+    }
+    /**
      * Return the view with the form to add a shoot
      *
      * @return \Illuminate\Contracts\Support\Renderable

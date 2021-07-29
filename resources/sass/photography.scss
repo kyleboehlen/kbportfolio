@@ -1,0 +1,128 @@
+// Base site styles
+@import 'base';
+
+// Import bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+img#logo
+{
+    left: 0;
+    max-height: 15vh;
+    margin: auto;
+    margin-top: 1.25vh;
+    right: 0;
+    position: absolute;
+    z-index: 10;
+
+    @media only screen and (max-width: 700px)
+    {
+        max-height: 10vh;
+    }
+}
+
+div.photography-container
+{
+    // background-color: rgba(0, 0, 0, .65);
+    border-radius: 25px 25px 0px 0px;
+    bottom: 0;
+    margin-left: .5%;
+    margin-right: .5%;
+    height: 82.5vh;
+    overflow-y: scroll;
+    padding-left: 1%;
+    padding-right: 1%;
+    position: absolute;
+    width: 99%;
+    z-index: 10;
+
+    @media only screen and (max-width: 700px)
+    {
+        height: 87.5vh;
+    }
+
+    // @media only screen and (max-width: 575px)
+    // {
+    //     margin-left: .5%;
+    //     margin-right: .5%;
+    //     width: 99%;
+    // }
+
+    div#filters-container
+    {
+        width: 100%;
+
+        button#photography-filter-btn
+        {
+            margin-top: 1%;
+            margin-left: auto;
+            margin-right: auto;
+            min-width: 20%;
+
+            @media only screen and (max-width: 1300px)
+            {
+                min-width: 40%;
+            }
+
+            @media only screen and (max-width: 700px)
+            {
+                min-width: 80%;
+            }
+        }
+
+        div#filters-div
+        {
+            background-color: rgba(0, 0, 0, .4);
+            border: 2px solid $white;
+            border-radius: 2.5px 2.5px 17.5px 17.5px;
+            color: $white;
+            margin-top: 1%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            width: 70%;
+        }
+    }
+
+    div.photo-container
+    {
+        background-color: rgba(0, 0, 0, .65);
+        border: 3px solid $black;
+        border-radius: 10px;
+        flex-grow: 1;
+        height: 40vh;
+        margin: 5px;
+
+        &:last-child
+        {
+            color: $white;
+            height: auto;
+            text-align: center;
+            width: 100%;
+        }
+
+        img
+        {
+            border-radius: 10px;
+            display: inline-block;
+            left: 0;
+            margin: auto;
+            margin-top: .5px;
+            margin-bottom: .5px;
+            max-width: 100%;
+            max-height: 100%;
+            right: 0;
+            vertical-align: middle;
+        }
+    }
+}
+
+div.background
+{
+    background-position: bottom;
+    background-size: cover;
+    height: 100%;
+    opacity: 85%;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}

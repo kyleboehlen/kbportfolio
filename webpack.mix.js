@@ -15,6 +15,7 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/admin.scss', 'public/css')
     .sass('resources/sass/contact.scss', 'public/css')
+    .sass('resources/sass/photography.scss', 'public/css')
     .sass('resources/sass/software.scss', 'public/css')
     .sass('resources/sass/splash.scss', 'public/css')
     .sourceMaps();

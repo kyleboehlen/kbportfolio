@@ -8,6 +8,7 @@
 
         {{-- Photography --}}
         <div class="menu-box" style="background-image: url(/storage/images/photography-background.jpg)">
+            <a class="menu-anchor" href="{{ route('photography') }}">
                 <div class="menu-anchor">
                     <p class="menu-text">Photography</p>
                 </div>

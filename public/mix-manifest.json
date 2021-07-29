@@ -1,8 +1,9 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/splash.css": "/css/splash.css",
     "/css/software.css": "/css/software.css",
+    "/css/photography.css": "/css/photography.css",
     "/css/contact.css": "/css/contact.css",
     "/css/admin.css": "/css/admin.css",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/css/splash.css": "/css/splash.css"
 }
