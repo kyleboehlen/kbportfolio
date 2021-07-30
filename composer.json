@@ -13,7 +13,8 @@
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
-        "marvinlabs/laravel-discord-logger": "^1.1"
+        "marvinlabs/laravel-discord-logger": "^1.1",
+        "monicahq/laravel-cloudflare": "^2.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
