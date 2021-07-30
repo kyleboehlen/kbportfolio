@@ -1,7 +1,13 @@
 require('./bootstrap');
 
 $(document).ready(function(){
-    $('.lazy').Lazy();
+    $('.lazy').Lazy({
+        appendScroll: $('.photography-container'),
+        visibleOnly: true,
+        afterLoad: function(element) {
+            element.css('min-width', '0px');
+        },
+    });
     
     // Shortcut to admin panel by right click on splash page logo
     $('.context-logo').on('contextmenu', function(e){
