@@ -10,7 +10,7 @@
                 </form>
 
                 {{-- Update form --}}
-                <div class="card" style="height: 100%;">
+                <div class="card" style="height: 100%;" id="photo-card-{{ $photo->id }}">
                     <form class="d-flex flex-column" style="height: 100%;"
                         action="{{ route('admin.photography.photo.update', ['photo' => $photo->id]) }}" method="POST">
                         @csrf

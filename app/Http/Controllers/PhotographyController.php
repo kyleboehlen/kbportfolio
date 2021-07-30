@@ -577,7 +577,7 @@ class PhotographyController extends Controller
             }
         }
 
-        return redirect()->route('admin.photography.photos.edit', ['shoot' => $photo->shoot_id])->with([
+        return redirect()->route('admin.photography.photos.edit', ['shoot' => $photo->shoot_id, "#photo-card-$photo->id"])->with([
             'success_alert' => "Updated photo $photo->caption",
         ]);
     }
