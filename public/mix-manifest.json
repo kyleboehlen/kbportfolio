@@ -1,9 +1,9 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/software.css": "/css/software.css",
-    "/css/photography.css": "/css/photography.css",
-    "/css/contact.css": "/css/contact.css",
-    "/css/admin.css": "/css/admin.css",
-    "/css/app.css": "/css/app.css",
-    "/css/splash.css": "/css/splash.css"
+    "/js/app.js": "/js/app.js?id=1b23e35fb01cd0036f3e",
+    "/css/software.css": "/css/software.css?id=066fa9ebe816bf2af0cc",
+    "/css/photography.css": "/css/photography.css?id=d0a8a94fd07b090af194",
+    "/css/contact.css": "/css/contact.css?id=5baedcd8c7b4c4b030a3",
+    "/css/admin.css": "/css/admin.css?id=45d2df2303ebe0755250",
+    "/css/app.css": "/css/app.css?id=01a632f311048a611093",
+    "/css/splash.css": "/css/splash.css?id=965b5802b99db06e9111"
 }
