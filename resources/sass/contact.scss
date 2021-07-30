@@ -1,6 +1,11 @@
 // Base site styles
 @import 'base';
 
+body, html
+{
+    height: 100vh;
+}
+
 div.contact-container
 {
     align-items: center;
