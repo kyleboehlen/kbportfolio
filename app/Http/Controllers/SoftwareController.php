@@ -48,12 +48,15 @@ class SoftwareController extends Controller
      */
     public function projects()
     {
+        // Get all the software projects
         $projects = Projects::all();
         foreach($projects as $project)
         {
+            // Load all of the technologies used in each software project
             $project->setTechnologiesArray();
         }
 
+        // Get all available technologies for displaying badges
         $technologies = config('software.technologies');
 
         return view('software')->with([
@@ -91,6 +94,7 @@ class SoftwareController extends Controller
             'app_link' => $request->get('app-link'),
         ]);
 
+        // Verify user is admin authenticated
         if(\Auth::check())
         {
             // Check if it has a private codebase
@@ -160,6 +164,7 @@ class SoftwareController extends Controller
      */
     public function edit(Projects $project)
     {
+        // Load technologies associated with the software project
         $project->setTechnologiesArray();
 
         return view('admin.software.form')->with([
@@ -177,6 +182,7 @@ class SoftwareController extends Controller
      */
     public function update(UpdateRequest $request, Projects $project)
     {
+        // Verify user is admin authenticated
         if(\Auth::check())
         {
             // Update project required fields
@@ -249,8 +255,10 @@ class SoftwareController extends Controller
      */
     public function destroy(Projects $project)
     {
+        // Verify user is admin authenticated
         if(\Auth::check())
         {
+            // Attempt to soft delete project
             if(!$project->delete())
             {
                 // Log errors

@@ -53,30 +53,36 @@ class PhotographyController extends Controller
      */
     public function index(Request $request)
     {
+        // Get all photos that are set to be shown on the home page of the photography portfolio
         $photos = Photos::where('show_on_home', 1);
 
         $filter_categories = array();
-        if($request->has('filters'))
+        if($request->has('filters')) // Check if any filters are set
         {
+            // Set filters
             $filter_categories = $request->get('filters');
-            if(count($filter_categories) > 0)
+            if(count($filter_categories) > 0) // Verify filter categories aren't blank
             {
-                $photo_ids =
+                $photo_ids = // Get the ids of all photos with that category
                     DB::table('photo_categories')
                         ->whereIn('category_id', $filter_categories)
                         ->get()->pluck('photo_id')->toArray();
 
+                // Add the photo ids as a query param on the query builder
                 $photos = $photos->whereIn('id', $photo_ids);
             }
         }
         
+        // Check if there is already a seed set on the session for randomizing the photo order
         $rand_seed = session('rand_seed');
-        if(is_null($rand_seed))
+        if(is_null($rand_seed)) // If no seed is set...
         {
+            // Generate 4 digit integer seed
             $rand_seed = rand(1000, 9999);
-            session(['rand_seed' => $rand_seed]);
+            session(['rand_seed' => $rand_seed]); // And save it to the session
         }
 
+        // Get the photos to display using the seed to randomize the order displayed
         $photos = $photos->inRandomOrder($rand_seed)->get();
 
         return view('photography')->with([
@@ -94,22 +100,27 @@ class PhotographyController extends Controller
      */
     public function viewShoot(Request $request, Shoots $shoot)
     {
+        // Get all photos that are part of the requested shoot
         $photos = Photos::where('shoot_id', $shoot->id);
 
         $filter_categories = array();
-        if($request->has('filters'))
+        if($request->has('filters')) // Check if any filters are set
         {
+            // Set filters
             $filter_categories = $request->get('filters');
-            if(count($filter_categories) > 0)
+            if(count($filter_categories) > 0) // Verify filters aren't blank
             {
-                $photo_ids =
+                $photo_ids = // Get all photo IDs that have that category
                     DB::table('photo_categories')
                         ->whereIn('category_id', $filter_categories)
                         ->get()->pluck('photo_id')->toArray();
+
+                // Filter by those photo ids on the query builder
                 $photos = $photos->whereIn('id', $photo_ids);
             }
         }
         
+        // Execute the query builder
         $photos = $photos->get();
 
         return view('photography')->with([
@@ -145,14 +156,16 @@ class PhotographyController extends Controller
             'name' => $request->get('name'),
         ]);
 
+        // Verify user is admin authenticted
         if(\Auth::check())
         {
             // Set shot on date
             if($request->has('date'))
             {
                 $date = $request->get('date');
-                if(!is_null($date))
+                if(!is_null($date)) // Verify param isn't blank
                 {
+                    // Format to Y-m-d for storing in DB
                     $shoot->shot_on = Carbon::parse($date)->format('Y-m-d');
                 }
             }
@@ -197,23 +210,24 @@ class PhotographyController extends Controller
                 }
             }
         }
-        else
+        else // If user is guest
         {
+            // Get all the shoots
             $shoots = Shoots::all();
             if(!is_null($shoots) && $shoots->count() > 0)
             {
-                $shoot->id = $shoots->first()->id;
+                $shoot->id = $shoots->first()->id; // Get a random shoot ID to redirect to
             }
             else
             {
                 return redirect()->route('admin.photography.shoot.edit')->with([
-                    'success_alert' => "Created new shoot $shoot->name",
+                    'success_alert' => "Created new shoot $shoot->name", // And set the name of that random shoot for success alert
                 ]);
             }
         }
 
         return redirect()->route('admin.photography.shoot.edit', ['shoot' => $shoot->id])->with([
-            'success_alert' => "Created new shoot $shoot->name",
+            'success_alert' => "Created new shoot $shoot->name", // For blade pop up alert
         ]);
     }
 
@@ -225,10 +239,13 @@ class PhotographyController extends Controller
      */
     public function editShoot(Shoots $shoot = null)
     {
+        // If the shoot is set
         if(!is_null($shoot))
         {
+            // Get all the default categories for the shoot
             $shoot->setCategoriesArray();
 
+            // Return the form to edit the shoot
             return view('admin.photography.shoots.form')->with([
                 'action_nav_opts' => $this->action_nav_opts,
                 'card_header' => 'Edit Shoot',
@@ -254,6 +271,7 @@ class PhotographyController extends Controller
      */
     public function updateShoot(Shoots $shoot, ShootRequest $request)
     {
+        // Check if user is admin authenticated
         if(\Auth::check())
         {
             // Update name
@@ -263,17 +281,20 @@ class PhotographyController extends Controller
             if($request->has('date'))
             {
                 $date = $request->get('date');
-                if(!is_null($date))
+                if(!is_null($date)) // Verify date param isn't blank
                 {
+                    // Format to Y-m-d for storing in the DB
                     $shoot->shot_on = Carbon::parse($date)->format('Y-m-d');
                 }
                 else
                 {
+                    // Clear the shot on date if blank
                     $shoot->shot_on = null;
                 }
             }
             else
             {
+                // Clear the shot on blank if param is missing
                 $shoot->shot_on = null;
             }
 
@@ -320,7 +341,7 @@ class PhotographyController extends Controller
         }
 
         return redirect()->route('admin.photography.shoot.edit', ['shoot' => $shoot->id])->with([
-            'success_alert' => "Updated shoot $shoot->name",
+            'success_alert' => "Updated shoot $shoot->name", // For blade pop up alert
         ]);
     }
 
@@ -331,8 +352,10 @@ class PhotographyController extends Controller
      */
     public function destroyShoot(Shoots $shoot)
     {
+        // Verify user is admin authenticated
         if(\Auth::check())
         {
+            // Attempt to soft delete shoot
             if(!$shoot->delete())
             {
                 // Log errors
@@ -347,12 +370,14 @@ class PhotographyController extends Controller
             }
             else
             {
+                // Get all photos associated with the shoot
                 $shoot->load('photos');
 
                 // Delete photos
                 foreach($shoot->photos as $photo)
                 {
-                    if(!$photo->delete())
+                    // Attempt to soft delete the photo
+                    if(!$photo->delete()) // Notice: this does not delete the asset files
                     {
                         // Log errors
                         Log::error('Failed to delete photo when deleting shoot', [
@@ -377,11 +402,14 @@ class PhotographyController extends Controller
      */
     public function uploadPhotos(Shoots $shoot = null)
     {
+        // Get all shoots available to upload photos to
         $shoots = Shoots::orderBy('name')->get();
 
+        // If the shoot is already set from the 'Upload Photos' redirect button...
         $shoot_id = null;
         if(!is_null($shoot))
         {
+            // Pass it to the blade to have it auto selected on the drop down
             $shoot_id = $shoot->id;
         }
 
@@ -401,6 +429,7 @@ class PhotographyController extends Controller
      */
     public function storePhoto(Shoots $shoot, Request $request)
     {
+        // Verify user is admin authenticated
         if(\Auth::check())
         {
             // Load other photos in shoot
@@ -484,7 +513,7 @@ class PhotographyController extends Controller
             }
         }
 
-        return response()->json();
+        return response()->json(); // For ajax response
     }
 
     /**
@@ -495,10 +524,13 @@ class PhotographyController extends Controller
      */
     public function editPhotos(Shoots $shoot = null)
     {
+        // If shoot is set to edit photos for
         if(!is_null($shoot))
         {
+            // Load all photos associated with the shoot
             $shoot->load('photos');
 
+            // Load the categories for each photo in the shoot
             foreach($shoot->photos as $photo)
             {
                 $photo->setCategoriesArray();
@@ -530,6 +562,7 @@ class PhotographyController extends Controller
      */
     public function updatePhoto(Photos $photo, PhotoRequest $request)
     {
+        // Verify user is admin authenticated
         if(\Auth::check())
         {
             // Update caption
@@ -589,8 +622,10 @@ class PhotographyController extends Controller
      */
     public function destroyPhoto(Photos $photo)
     {
+        // Verify user is admin authenticated
         if(\Auth::check())
         {
+            // Attempt to soft delete photo
             if(!$photo->delete())
             {
                 // Log errors

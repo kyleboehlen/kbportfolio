@@ -65,9 +65,10 @@ class ResumeController extends Controller
      */
     public function updateResume(UpdateRequest $request)
     {
-        // Upload the resume
+        // Verify user is admin authenticated
         if(\Auth::check())
         {
+            // Upload the resume
             $request->file('resume')->storeAs('public', 'documents/resume.pdf');
         }
 

@@ -19,6 +19,7 @@ class Shoots extends Model
 
     public function setCategoriesArray()
     {
+        // Set an array of all the default category IDs associated with the shoot
         $this->categories =
             DB::table('shoot_categories')
                 ->where('shoot_id', $this->id)

@@ -18,6 +18,7 @@ class Projects extends Model
 
     public function setTechnologiesArray()
     {
+        // Set an array of all the technology IDs associated with the software project
         $this->technologies =
             DB::table('software_project_technologies')
                 ->where('project_id', $this->id)

@@ -108,7 +108,7 @@ class ContactController extends Controller
         $blade_array = array();
         if($success)
         {
-            $blade_array = [
+            $blade_array = [ // Set success message for pop up alert on blade
                 'success_alert' => 'Contact phone number updated',
             ];
         }
@@ -160,7 +160,7 @@ class ContactController extends Controller
         $blade_array = array();
         if($success)
         {
-            $blade_array = [
+            $blade_array = [ // Set success pop up alert on blade
                 'success_alert' => 'Contact email updated',
             ];
         }

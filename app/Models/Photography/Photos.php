@@ -16,6 +16,7 @@ class Photos extends Model
 
     public function setCategoriesArray()
     {
+        // Set an array of all the category IDs associated with the photo
         $this->categories =
             DB::table('photo_categories')
                 ->where('photo_id', $this->id)

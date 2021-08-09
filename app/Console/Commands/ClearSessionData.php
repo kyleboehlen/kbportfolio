@@ -37,13 +37,14 @@ class ClearSessionData extends Command
      */
     public function handle()
     {
+        // Get the default driver in order to figure out how we clear that data
         $session_driver = session()->getDefaultDriver();
 
         switch($session_driver)
         {
             case 'file':
-                $file_path = storage_path('framework/sessions/');
-                $command = "rm -f $file_path*";
+                $file_path = storage_path('framework/sessions/'); // The path to the session data
+                $command = "rm -f $file_path*"; // Command to delete the file session data
                 exec($command);
                 break;
         }

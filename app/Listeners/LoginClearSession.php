@@ -25,6 +25,7 @@ class LoginClearSession
      */
     public function handle($event)
     {
+        // Clears the admin alert first request of the session flag
         session()->forget('admin_alert');
     }
 }

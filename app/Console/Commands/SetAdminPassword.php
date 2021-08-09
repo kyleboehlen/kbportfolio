@@ -41,9 +41,12 @@ class SetAdminPassword extends Command
      */
     public function handle()
     {
+        // Get password from command line
         $password = $this->secret('What is the password?');
+
+        // The only user is the admin user
         $admin_user = User::all()->first();
-        $admin_user->password = Hash::make($password);
+        $admin_user->password = Hash::make($password); // set password
         $admin_user->save();
     }
 }
