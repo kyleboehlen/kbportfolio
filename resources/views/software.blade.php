@@ -29,7 +29,7 @@
                                 Private Codebase&nbsp;&nbsp;&nbsp;<img class="btn-img" src="{{ asset('storage/icons/private.png') }}" />
                             </button>
                         @else
-                            <a class="btn btn-primary fs-5" href="{{ $project->app_link }}" target="_blank">
+                            <a class="btn btn-primary fs-5" href="{{ $project->codebase_link }}" target="_blank">
                                 View Codebase&nbsp;&nbsp;&nbsp;<img class="btn-img" src="{{ asset('storage/icons/code.png') }}" />
                             </a>
                         @endif
