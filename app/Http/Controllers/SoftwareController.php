@@ -100,7 +100,7 @@ class SoftwareController extends Controller
             // Check if it has a private codebase
             if(!$request->has('private-codebase'))
             {
-                $project->codebase_link = $request->get('codebase_link');
+                $project->codebase_link = $request->get('codebase-link');
             }
 
             // Save the project
