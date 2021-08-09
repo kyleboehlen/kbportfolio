@@ -1,4 +1,4 @@
-# PDPHero (Alpha Dev)
+# KBPortfolio
 
 ## Installation
 Before installing the site the following tools need to be installed:
