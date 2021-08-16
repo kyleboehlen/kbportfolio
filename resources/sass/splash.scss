@@ -26,6 +26,12 @@ img#logo
     {
         max-height: 15vh;
     }
+
+    // chrome fix for mobile Chrome
+    @media only screen and (max-width: 775px) and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm)
+    {
+        top: 7vh;
+    }
 }
 
 div.menu-container
