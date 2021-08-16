@@ -2,6 +2,7 @@
 
 namespace App\Models\Photography;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
@@ -11,7 +12,7 @@ use App\Models\Photography\Photos;
 
 class Shoots extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
     
     protected $fillable = [
         'name',
