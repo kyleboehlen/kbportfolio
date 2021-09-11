@@ -59,7 +59,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark background-z-index">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('index') }}">
-                <img src="/storage/images/klogo.png" id="logo">
+                <img src="/storage/images/kinglogo.png" id="logo">
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
