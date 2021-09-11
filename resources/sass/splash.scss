@@ -1,15 +1,18 @@
 // Base site styles
 @import 'base';
 
+
 img#logo
 {
-    bottom: 0;
     left: 0;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     max-height: 30vh;
+    max-width: 100%;
     position: absolute;
     right: 0;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 10;
 
     @media only screen and (max-width: 1300px)
@@ -24,7 +27,10 @@ img#logo
 
     @media only screen and (max-width: 775px)
     {
-        max-height: 15vh;
+        height: 15vh;
+        margin-top: 42.5vh;
+        top: 0;
+        transform: translateY(0%);
     }
 }
 
