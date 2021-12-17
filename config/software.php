@@ -56,5 +56,35 @@ return [
             'bg_color' => 'success',
             'text_dark' => false,
         ],
+        12 => [
+            'name' => 'NativeScript',
+            'bg_color' => 'secondary',
+            'text_dark' => false,
+        ],
+        13 => [
+            'name' => 'Material Kit',
+            'bg_color' => 'info',
+            'text_dark' => true,
+        ],
+        14 => [
+            'name' => 'Discord.js',
+            'bg_color' => 'warning',
+            'text_dark' => true,
+        ],
+        15 => [
+            'name' => 'Node.js',
+            'bg_color' => 'danger',
+            'text_dark' => false,
+        ],
+        16 => [
+            'name' => 'Vue.js',
+            'bg_color' => 'success',
+            'text_dark' => false,
+        ],
+        17 => [
+            'name' => 'Inertia',
+            'bg_color' => 'secondary',
+            'text_dark' => false,
+        ],
     ],
 ];

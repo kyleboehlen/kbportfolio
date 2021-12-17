@@ -1,13 +1,13 @@
 @extends('base')
 
 @section('body')
+    {{-- Logo --}}
+    <a href="{{ route('index') }}">
+        <img src="/storage/images/klogo.png" id="logo"/>
+    </a>
+
     {{-- Flex container --}}
-    <div class="software-container d-flex flex-column justify-content-evenly align-items-center">
-        {{-- Logo --}}
-        <a href="{{ route('index') }}">
-            <img src="/storage/images/klogo.png" id="logo"/>
-        </a>
-    
+    <div class="software-container d-flex flex-column justify-content-evenly align-items-center">    
         @foreach($projects as $project)
             <div class="project d-flex justify-content-evenly">
                 <div class="logo-container" style="background-image: url(/storage/images/software/{{ $project->logo }});"></div>

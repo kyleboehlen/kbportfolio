@@ -10,25 +10,56 @@ html, body
     overflow-y: hidden;
 }
 
+img#logo
+{
+    left: 0;
+    max-height: 15vh;
+    margin: auto;
+    margin-top: 1.25vh;
+    right: 0;
+    position: absolute;
+    z-index: 10;
+
+    @media only screen and (max-width: 700px)
+    {
+        max-height: 10%;
+    }
+}
+
 div.software-container
 {
-    background-color: rgba(0, 0, 0, .35);
-    height: 100vh;
-    outline: 2px $white;
+    border-radius: 25px 25px 0px 0px;
+    bottom: 0;
+    margin-left: .5%;
+    margin-right: .5%;
+    height: 82.5vh;
+    overflow-y: scroll;
+    padding-left: 1%;
+    padding-right: 1%;
     position: absolute;
-    width: 100%;
-    z-index: 9;
+    width: 99%;
+    z-index: 10;
 
-    img#logo
+    // Scrollbars
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    &::-webkit-scrollbar
     {
-        max-height: 22.5vh;
-        z-index: 10;
-
-        @media only screen and (max-width: 700px)
-        {
-            max-height: 12.5vh;
-        }
+        display: none;
     }
+
+    @media only screen and (max-width: 700px)
+    {
+        height: 87.5%;
+    }
+
+    @media only screen and (max-height: 900px)
+    {
+        // padding-bottom: 1%;
+        // padding-top: 17.5vh;
+        justify-content: flex-start !important;
+    }
+
 
     div.project
     {
@@ -65,6 +96,11 @@ div.software-container
         @media only screen and (max-width: 500px)
         {
             padding: 1.5%;
+        }
+
+        @media only screen and (max-height: 900px)
+        {
+            margin-bottom: 25px;
         }
 
         div.logo-container
@@ -120,6 +156,11 @@ div.software-container
                 {
                     max-width: 15px;
                 }
+
+                @media only screen and (max-width: 340px)
+                {
+                    max-width: 12.5px;
+                }
             }
             
             .btn
@@ -129,6 +170,11 @@ div.software-container
                     font-size: 1em !important;
                     padding-bottom: 2.5px;
                     padding-top: 2.5px;
+                }
+
+                @media only screen and (max-width: 340px)
+                {
+                    font-size: .9em !important;
                 }
             }
         }
