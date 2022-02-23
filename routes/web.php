@@ -31,6 +31,9 @@ Auth::routes([
 // Index
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
+// Spotify redirect
+Route::get('', [HomeController::class, 'spotify'])->name('spotify');
+
 // Photography
 Route::prefix('photography')->group(function(){
     // View show on home images
