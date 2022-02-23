@@ -32,7 +32,7 @@ Auth::routes([
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
 // Spotify redirect
-Route::get('', [HomeController::class, 'spotify'])->name('spotify');
+Route::get('spotify', [HomeController::class, 'spotify'])->name('spotify');
 
 // Photography
 Route::prefix('photography')->group(function(){
