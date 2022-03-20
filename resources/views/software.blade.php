@@ -3,7 +3,7 @@
 @section('body')
     {{-- Logo --}}
     <a href="{{ route('index') }}">
-        <img src="/storage/images/klogo.png" id="logo"/>
+        <img src="{{ Storage::url(config('filesystems.dir.images') . 'klogo.png') }}" id="logo"/>
     </a>
 
     {{-- Flex container --}}
@@ -26,16 +26,16 @@
                     <div class="button-container d-flex justify-content-between">
                         @if(is_null($project->codebase_link))
                             <button class="btn btn-primary fs-5" href="{{ $project->app_link }}" disabled>
-                                Private Codebase&nbsp;&nbsp;&nbsp;<img class="btn-img" src="{{ asset('storage/icons/private.png') }}" />
+                                Private Codebase&nbsp;&nbsp;&nbsp;<img class="btn-img" src="{{ Storage::url(config('filesystems.dir.icons') . 'private.png') }}" />
                             </button>
                         @else
                             <a class="btn btn-primary fs-5" href="{{ $project->codebase_link }}" target="_blank">
-                                View Codebase&nbsp;&nbsp;&nbsp;<img class="btn-img" src="{{ asset('storage/icons/code.png') }}" />
+                                View Codebase&nbsp;&nbsp;&nbsp;<img class="btn-img" src="{{ Storage::url(config('filesystems.dir.icons') . 'code.png') }}" />
                             </a>
                         @endif
 
                         <a class="btn btn-primary fs-5" href="{{ $project->app_link }}" target="_blank">
-                            View App&nbsp;&nbsp;&nbsp;<img class="btn-img" src="{{ asset('storage/icons/external.png') }}" />
+                            View App&nbsp;&nbsp;&nbsp;<img class="btn-img" src="{{ Storage::url(config('filesystems.dir.icons') . 'external.png') }}" />
                         </a>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
     </div>
 
     {{-- Background div --}}
-    <div class="background" style="background-image: url(/storage/images/software-background-hi-res.jpg)">
+    <div class="background" style="background-image: url({{ Storage::url(config('filesystems.dir.images') . 'software-background-hi-res.jpg') }})">
         <!-- Hello there! -->
     </div
 @endsection

@@ -5,7 +5,7 @@
     <div class="contact-container">
         {{-- Logo --}}
         <a href="{{ route('index') }}">
-            <img src="/storage/images/klogo.png" id="logo"/>
+            <img src="{{ Storage::url(config('filesystems.dir.images') . 'klogo.png') }}" id="logo"/>
         </a>
         
         {{-- Phone Number --}}

@@ -3,7 +3,7 @@
 @section('body')
     {{-- Logo --}}
     <a href="{{ route('index') }}">
-        <img src="/storage/images/klogo.png" id="logo"/>
+        <img src="{{ Storage::url(config('filesystems.dir.images') . 'klogo.png') }}" id="logo"/>
     </a>
     
     <div class="photography-container d-flex flex-wrap align-content-start">
@@ -11,7 +11,7 @@
         <div id="filters-container" class="d-flex flex-column justify-content-center mb-3">
             <button type="button" class="btn btn-primary fs-5" id="photography-filter-btn" data-bs-toggle="collapse"
                 data-bs-target="#filters-div" data-filters-changed="false">
-                Filters <img src="/storage/icons/filter.png"/>
+                Filters <img src="{{ Storage::url(config('filesystems.dir.icons') . 'filter.png') }}"/>
             </button>
             <div class="collapse" id="filters-div">
                 @foreach(config('photography.categories') as $id => $category)
@@ -26,7 +26,7 @@
         @foreach($photos as $photo)
             <div class="photo-container d-flex justify-content-center" data-photo-id="{{ $photo->id }}"
                 data-asset="{{ $photo->asset }}" data-shoot-id="{{ $photo->shoot_id }}" id="photo-container-{{ $photo->id }}">
-                <img class="lazy" data-src="/storage/images/photography/compressed/{{ $photo->asset }}" />
+                <img class="lazy" data-src="{{ Storage::url(config('filesystems.dir.photography.compressed') . $photo->asset) }}" />
             </div>
         @endforeach
         <div class="photo-container">
@@ -39,7 +39,7 @@
         data-photo-ids="{{ json_encode($photos->pluck('id')->toArray()); }}" data-photo-id="0">
         <div id="viewer-toolbar" class="d-flex justify-content-center">
             <span id="viewer-left" class="badge rounded-pill bg-primary arrow-btns">
-                <img src="/storage/icons/arrow-left.png" />
+                <img src="{{ Storage::url(config('filesystems.dir.icons') . 'arrow-left.png') }}" />
             </span>
 
             @isset($shoot)
@@ -53,25 +53,25 @@
             @endif
 
             <span id="viewer-right" class="badge rounded-pill bg-primary arrow-btns">
-                <img src="/storage/icons/arrow-right.png" />
+                <img src="{{ Storage::url(config('filesystems.dir.icons') . 'arrow-right.png') }}" />
             </span>
 
             <span id="viewer-close" class="badge rounded-pill bg-primary ms-auto">
-                <img src="/storage/icons/close.png" />
+                <img src="{{ Storage::url(config('filesystems.dir.icons') . 'close.png') }}" />
             </span>
         </div>
 
         <div id="full-res-container" class="d-flex justify-content-center align-content-center flex-grow-1">
-            <img id="full-res-loader" class="full-res-img" src="/storage/images/loading.gif" />
+            <img id="full-res-loader" class="full-res-img" src="{{ Storage::url(config('filesystems.dir.images') . 'loading.gif') }}" />
             
             @foreach($photos as $photo)
-                <img id="full-res-img-{{ $photo->id }}" class="full-res-img" src="/storage/images/photography/fullres/" />
+                <img id="full-res-img-{{ $photo->id }}" class="full-res-img" src="{{ Storage::url(config('filesystems.dir.photography.fullres')) }}" />
             @endforeach
         </div>
     </div>
 
     {{-- Background div --}}
-    <div class="background" style="background-image: url(/storage/images/photography-background-hi-res.jpg)">
+    <div class="background" style="background-image: url({{ Storage::url(config('filesystems.dir.images') . 'photography-background-hi-res.jpg') }})">
         <!-- Hello there! -->
     </div
 @endsection

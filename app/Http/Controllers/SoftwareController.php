@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Storage;
 use Log;
 use DB;
 
@@ -118,8 +119,7 @@ class SoftwareController extends Controller
             }
 
             // Upload logo
-            $project->logo = $request->file('logo')->store('public/images/software');
-            $project->logo = str_replace('public/images/software/', '', $project->logo);
+            $project->logo = str_replace(config('filesystems.dir.software') . '/', '', Storage::put(config('filesystems.dir.software'), $request->file('logo')));
 
             if(!$project->save())
             {

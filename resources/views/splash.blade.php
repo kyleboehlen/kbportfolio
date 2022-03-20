@@ -2,12 +2,12 @@
 
 @section('body')
     {{-- Logo --}}
-    <img class="context-logo" src="/storage/images/klogo.png" id="logo" />
+    <img class="context-logo" src="{{ Storage::url(config('filesystems.dir.images') . 'klogo.png') }}" id="logo" />
 
     <div class="menu-container">
 
         {{-- Photography --}}
-        <div class="menu-box" style="background-image: url(/storage/images/photography-background.jpg)">
+        <div class="menu-box" style="background-image: url({{ Storage::url(config('filesystems.dir.images') . 'photography-background.jpg') }})">
             <a class="menu-anchor" href="{{ route('photography') }}">
                 <div class="menu-anchor">
                     <p class="menu-text">Photography</p>
@@ -16,7 +16,7 @@
         </div>
 
         {{-- Software --}}
-        <div class="menu-box" style="background-image: url(/storage/images/software-background.jpg)">
+        <div class="menu-box" style="background-image: url({{ Storage::url(config('filesystems.dir.images') . 'software-background.jpg') }})">
             <a class="menu-anchor" href="{{ route('software') }}">
                 <div class="menu-anchor">
                     <p class="menu-text top">Software</p>
@@ -25,7 +25,7 @@
         </div>
 
         {{-- Resume --}}
-        <div class="menu-box" style="background-image: url(/storage/images/resume-background.jpg)">
+        <div class="menu-box" style="background-image: url({{ Storage::url(config('filesystems.dir.images') . 'resume-background.jpg') }})">
             <a class="menu-anchor" href="/storage/documents/resume.pdf" target="_blank">
                 <div class="menu-anchor">
                     <p class="menu-text bottom">Resume</p>
@@ -34,7 +34,7 @@
         </div>
 
         {{-- Contact --}}
-        <div class="menu-box" style="background-image: url(/storage/images/contact-background.jpg)">
+        <div class="menu-box" style="background-image: url({{ Storage::url(config('filesystems.dir.images') . 'contact-background.jpg') }})">
             <a class="menu-anchor" href="{{ route('contact') }}">
                 <div class="menu-anchor">
                     <p class="menu-text">Contact</p>

@@ -42,6 +42,19 @@ return [
             'visibility' => 'public',
         ],
 
+        'do' => [
+            'driver' => 's3',
+            'key' => env('DO_ACCESS_KEY_ID'),
+            'secret' => env('DO_SECRET_ACCESS_KEY'),
+            'region' => env('DO_DEFAULT_REGION'),
+            'bucket' => env('DO_BUCKET'),
+            // 'folder' => env('DO_FOLDER'),
+            'cdn_endpoint' => env('DO_CDN_ENDPOINT'),
+            'url' => env('DO_URL'),
+            'endpoint' => env('DO_ENDPOINT'),
+            'use_path_style_endpoint' => env('DO_USE_PATH_STYLE_ENDPOINT', false),
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -53,6 +66,17 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
 
+    ],
+
+    // Directories for referencing files
+    'dir' => [
+        'icons' => env('DO_FOLDER') . 'public/icons/',
+        'images' => env('DO_FOLDER') . 'public/images/',
+        'software' => env('DO_FOLDER') . 'public/images/software/',
+        'photography' => [
+            'compressed' => env('DO_FOLDER') . 'public/images/photography/compressed/',
+            'fullres' => env('DO_FOLDER') . 'public/images/photography/fullres/',
+        ],
     ],
 
     /*
@@ -67,7 +91,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        // public_path('storage') => storage_path('app/public'),
     ],
 
 ];

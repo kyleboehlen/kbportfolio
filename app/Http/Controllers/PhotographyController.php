@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Storage;
 use Image;
 use DB;
 
@@ -443,8 +444,7 @@ class PhotographyController extends Controller
             ]);
 
             // Upload image
-            $path = 'public/images/photography/fullres';
-            $photo->asset = str_replace($path . '/', '', $request->file->store($path));
+            $photo->asset = str_replace(config('filesystems.dir.photography.fullres') . '/', '', Storage::put(config('filesystems.dir.photography.fullres'), $request->file));
 
             // Save photo entry
             if(!$photo->save())
@@ -463,10 +463,10 @@ class PhotographyController extends Controller
             }
 
             // Create compressed version
-            if(!Image::make(storage_path('app/' . $path . '/') . $photo->asset)->resize(1000, 1000, function ($constraint) {
+            if(!Storage::put(config('filesystems.dir.photography.compressed') . $photo->asset, Image::make(Storage::get(config('filesystems.dir.photography.fullres') . $photo->asset))->resize(1000, 1000, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
-            })->save(storage_path('app/public/images/photography/compressed/' . $photo->asset)))
+            })->stream()->__toString()))
             {
                 // Log error
                 Log::error('Failed to save compressed photo', [

@@ -20,7 +20,7 @@
                             <input type="checkbox" class="btn-check" name="show-on-home" id="show-on-home-{{ $photo->id }}" autocomplete="off"
                                 @if($photo->show_on_home) checked @endif>
                             <label class="btn btn-outline-success mr-2" for="show-on-home-{{ $photo->id }}">
-                                <img src="/storage/icons/home.png" />
+                                <img src="{{ Storage::url(config('filesystems.dir.icons') . 'home.png') }}" />
                             </label>
 
                             {{-- Spacer --}}
@@ -32,7 +32,7 @@
 
                         {{-- Preview image --}}
                         <div class="d-flex flex-column justify-content-center flex-grow-1">
-                            <img src="/storage/images/photography/compressed/{{ $photo->asset }}" class="card-img-top mt-2 mb-1" />
+                            <img src="{{ Storage::url(config('filesystems.dir.photography.compressed') . $photo->asset) }}" class="card-img-top mt-2 mb-1" />
                         </div>
 
                         {{-- Categories expand --}}
@@ -54,7 +54,7 @@
                             {{-- Delete button --}}
                             <button type="button" class="btn btn-danger"
                                 onclick="verifyDeleteForm('Are you sure you want to delete this photo?', '#delete-photo-{{ $photo->id }}')">
-                                <img src="/storage/icons/delete.png" />
+                                <img src="{{ Storage::url(config('filesystems.dir.icons') . 'delete.png') }}" />
                             </button>
 
                             {{-- Spacer --}}
@@ -62,7 +62,7 @@
 
                             {{-- Save button --}}
                             <button type="submit" class="btn btn-success flex-grow-1">
-                                <img src="/storage/icons/save.png" />
+                                <img src="{{ Storage::url(config('filesystems.dir.icons') . 'save.png') }}" />
                             </button>
                         </div>
                     </form>

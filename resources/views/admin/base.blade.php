@@ -53,13 +53,13 @@
     @endif
 
     {{-- Background --}}
-    <div class="background" style="background-image: url(/storage/images/admin-background.jpg)"></div>
+    <div class="background" style="background-image: url({{ Storage::url(config('filesystems.dir.images') . 'admin-background.jpg') }})"></div>
 
     {{-- Top Nav --}}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark background-z-index">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('index') }}">
-                <img src="/storage/images/kinglogo.png" id="logo">
+                <img src="{{ Storage::url(config('filesystems.dir.images') . 'kinglogo.png') }}" id="logo">
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
