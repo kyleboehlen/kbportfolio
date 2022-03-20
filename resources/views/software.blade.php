@@ -10,7 +10,7 @@
     <div class="software-container d-flex flex-column justify-content-evenly align-items-center">    
         @foreach($projects as $project)
             <div class="project d-flex justify-content-evenly">
-                <div class="logo-container" style="background-image: url(/storage/images/software/{{ $project->logo }});"></div>
+                <div class="logo-container" style="background-image: url({{ Storage::url(config('filesystems.dir.software') . $project->logo) }});"></div>
 
                 <div class="details-container">
                     @foreach($project->technologies as $technology)

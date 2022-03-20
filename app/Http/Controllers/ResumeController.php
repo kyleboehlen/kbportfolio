@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Storage;
+use File;
 
 // Requests
 use App\Http\Requests\Resume\UpdateRequest;
@@ -69,7 +71,9 @@ class ResumeController extends Controller
         if(\Auth::check())
         {
             // Upload the resume
-            $request->file('resume')->storeAs('public', 'documents/resume.pdf');
+            $file = Storage::put(config('filesystems.dir.documents'), $request->file('resume'));
+            Storage::delete(config('filesystems.dir.documents') . 'resume.pdf');
+            Storage::move($file, config('filesystems.dir.documents') . 'resume.pdf');
         }
 
         return redirect()->route('admin.resume.view')->with([

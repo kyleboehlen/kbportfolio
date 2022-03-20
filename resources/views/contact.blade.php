@@ -20,7 +20,7 @@
     </div>
 
     {{-- Background div --}}
-    <div class="background" style="background-image: url(/storage/images/contact-background-hi-res.jpg)">
+    <div class="background" style="background-image: url({{ Storage::url(config('filesystems.dir.images') . 'contact-background-hi-res.jpg') }})">
         <!-- Hello there! -->
     </div
 @endsection

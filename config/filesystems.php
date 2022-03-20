@@ -44,6 +44,7 @@ return [
 
         'do' => [
             'driver' => 's3',
+            'visibility' => 'public',
             'key' => env('DO_ACCESS_KEY_ID'),
             'secret' => env('DO_SECRET_ACCESS_KEY'),
             'region' => env('DO_DEFAULT_REGION'),
@@ -70,6 +71,7 @@ return [
 
     // Directories for referencing files
     'dir' => [
+        'documents' => env('DO_FOLDER') . 'public/documents/',
         'icons' => env('DO_FOLDER') . 'public/icons/',
         'images' => env('DO_FOLDER') . 'public/images/',
         'software' => env('DO_FOLDER') . 'public/images/software/',

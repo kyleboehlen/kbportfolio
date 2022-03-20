@@ -26,7 +26,7 @@
 
         {{-- Resume --}}
         <div class="menu-box" style="background-image: url({{ Storage::url(config('filesystems.dir.images') . 'resume-background.jpg') }})">
-            <a class="menu-anchor" href="/storage/documents/resume.pdf" target="_blank">
+            <a class="menu-anchor" href="{{ Storage::url(config('filesystems.dir.documents') . 'resume.pdf') }}" target="_blank">
                 <div class="menu-anchor">
                     <p class="menu-text bottom">Resume</p>
                 </div>
