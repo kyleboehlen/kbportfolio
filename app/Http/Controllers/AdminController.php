@@ -13,7 +13,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        return view('admin.index')->with(['card_header' => 'No place like 127.0.0.1 :)']);
     }
 
     /**
