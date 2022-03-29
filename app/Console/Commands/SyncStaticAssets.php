@@ -12,7 +12,7 @@ class SyncStaticAssets extends Command
      *
      * @var string
      */
-    protected $signature = 'sync:static-assets';
+    protected $signature = 'assets:sync-static';
 
     /**
      * The console command description.
@@ -30,6 +30,14 @@ class SyncStaticAssets extends Command
     {
         // Get all the static directories we need to sync
         $directories = config('filesystems.dir.static');
+
+        $dir_count = count($directories);
+        if ($dir_count > 0) {
+            echo "Syncing static assets for $dir_count directories...\n";
+        } else {
+            echo "No asset directories to sync.\n";
+            return 0;
+        }
 
         foreach ($directories as $dir) {
             // Get the relative path of the directory
@@ -62,6 +70,8 @@ class SyncStaticAssets extends Command
                 Storage::writeStream($local_file, Storage::disk('local')->readStream($local_file));
             }
         }
+
+        echo "Synced static assets!\n";
 
         return 0;
     }
