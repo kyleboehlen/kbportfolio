@@ -32,14 +32,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
-        ],
-
-        'public' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
+            'root' => storage_path(),
         ],
 
         'do' => [
@@ -56,15 +49,16 @@ return [
             'use_path_style_endpoint' => env('DO_USE_PATH_STYLE_ENDPOINT', false),
         ],
 
-        's3' => [
+        'minio' => [
             'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
-            'endpoint' => env('AWS_ENDPOINT'),
-            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'key' => 'sail',
+            'secret' => 'password',
+            'region' => 'us-east-1',
+            'bucket' => 'local',
+            'url' => 'http://localhost:9000/local',
+            'endpoint' => 'http://minio:9000',
+            'use_path_style_endpoint' => true,
+            // 'bucket_endpoint' => true,
         ],
 
     ],
@@ -79,6 +73,10 @@ return [
             'compressed' => env('DO_FOLDER') . 'public/images/photography/compressed/',
             'fullres' => env('DO_FOLDER') . 'public/images/photography/fullres/',
         ],
+        // The directories that are static assets that need to be synced with the s3 bucket
+        'static' => [
+            'icons', 'images',
+        ],
     ],
 
     /*
@@ -92,8 +90,6 @@ return [
     |
     */
 
-    'links' => [
-        // public_path('storage') => storage_path('app/public'),
-    ],
+    'links' => [],
 
 ];
