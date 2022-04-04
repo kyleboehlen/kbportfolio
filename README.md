@@ -1,145 +1,101 @@
 # KBPortfolio
 
-## Installation
-Before installing the site the following tools need to be installed:
-- php7.4 or higher with the extensions
-- apache2
-- MySQL (MariaDB)
-- git
-- composer (added to the PATH)
-- npm
+This Laravel application is my personal portfolio site for my resume, software projects, and photography.
 
-<br/>
-Clone into the directory
+It's set up to use Docker (Laravel Sail) in development and Digital Ocean's App Platform in production while leveraging Spaces (S3 bucket) for assets.
 
-`cd /var/www/html && git clone https://kyleboehlen@bitbucket.org/kyleboehlen/kbportfolio.git`
+## Local Development (Docker)
 
-<br/>
-Install the required depdendencies
+### Install WSL2
 
-`cd /var/www/html/pdphero && composer install`
+If on Windows verify you are doing the setup with WSL2. This is the bash shell you should be using, and also the Docker driver you should be using.
 
-`npm install`
+If it is not installed you can do so by simply running the following command in powershell:
 
-<br/>
-Generate the .css and .js files
+`wsl --install -d "Ubuntu-20.04"`
 
-`npm run prod`
+Then make sure that you have [Docker Desktop](https://www.docker.com/products/docker-desktop) installed and running
 
-<br/>
-Create a copy of the enviroment file from the template
+Clone the codebase, preferably somewhere in your home directory
 
-`cp .env.example .env`
+`git clone https://github.com/kyleboehlen/kbportfolio.git`
 
-<br/>
-Generate the application encryption key
+You'll then need to create your .env file by copying the example env file
 
-`php artisan key:generate`
+`cp .env.example.local .env`
 
-<br/>
-Change the apache2 webroot to the laravel public folder
-- Change to the apache2 root directory and open the configuration file
+The rest of the instructions use the `sail` command. You should alias this command to the following:
 
-   `cd /etc/apache2/sites-available && sudo nano 000-default.conf`
-- Edit the document root option to:
+`./vendor/bin/sail`
 
-   `DocumentRoot /var/www/html/kbportfolio/public`
-- Restart apache2
+Generate an application key
 
-   `sudo service apache2 restart`
+`sail artisan key:generate`
 
-<br/>
-In order to allow laravel to handle URLs, make sure the apache mod_rewrite extension is enabled and allow overrides
-- Edit apache2.conf to allow overrides
+And fill out the missing variables in the .env file
 
-   `cd /etc/apache2/ && sudo nano apache2.conf`
-- Add the following to the directory settings
-
-```
-   <Directory /var/www/html/kbportfolio/public>
-
-      Options Indexes FollowSymLinks
-
-      AllowOverride All
-
-      Require all granted
-
-   </Directory>
-```
-
-- Enable mod_rewrite extension
-
-   `sudo a2enmod rewrite`
-- Restart apache2
-
-   `sudo service apache2 restart`
-
-<br/>
-Allow apache to serve the files
-
-`cd /var/www/html && sudo chown -R www-data:{your_user_group} kbportfolio`
-
-<br/>
-Create a symbolic link for the storage folder
-
-`cd /var/www/html/kbportfolio && php artisan storage:link`
-
-<br/>
-Create a nysql database and create a new user to grant all privliages to the database on. Be sure to fill out the DB .env vars
-
-- DB_DATABASE=
-- DB_USERNAME=
-- DB_PASSWORD=
-
-<br/>
-Add the discord web hook url for logging
-
-- LOG_DISCORD_WEBHOOK_URL=
-
-<br/>
-Add the papertrail url/port for logging
-
-- PAPERTRAIL_URL=
 - PAPERTRAIL_PORT=
+- LOG_DISCORD_WEBHOOK_URL=""
 
-<br/>
-Run the database migration and seed
+Before starting the Docker container install the composer packages, once you have the container running you may want to run a composer update if any of the local path packages didn't install correctly
 
-`php artisan migrate`
+```
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v $(pwd):/var/www/html \
+    -w /var/www/html \
+    laravelsail/php81-composer:latest \
+    composer install --ignore-platform-reqs
+```
 
-`php artisan db:seed`
+Finally go ahead and start the container
 
-<br/>
-Set the admin password
+`sail up -d`
 
-`php artisan admin:password`
+Once it's up you can migrate and seed the database
 
-<br/>
-Change the php.ini file to let Laravel handle file upload sizes
+`sail artisan migrate && sail artisan db:seed`
 
-`upload_max_filesize = 0`
-`post_max_size = 0`
+And set an admin password for the admin panel login, the username is the email specified in the .env file
 
-<br/>
-Run crontab -e and add the following line
+`sail artisan admin:password`
 
-`* * * * * cd /var/www/html/kbportfolio && php artisan schedule:run >> /dev/null 2>&1`
+You'll also need to generate the assets
 
-<br/><br/>
-### _Make sure these steps are completed last_ 
+`sail npm run dev`
 
-Optimize the autoloader class
+Lastly, you'll need to go to `localhost:9000` to access the MinIO console
 
-   `composer install --optimize-autoloader --no-dev`
+Login using sail as the username and password as the password and create a bucket named `local` with a Public access policy
 
-<br/>
-Cache the configuration
+## Production (Digital Ocean App Platform)
 
-   `php artisan config:cache`
+The digital ocean app platform is set up to track the master branch, use the .env.example.production file to create the enviroment variables for the application.
 
+You'll need to generate an `APP_KEY` elsewhere otherwise the build process would change it every time.
 
-Optimize route loading
+A managed database instance is also needed, in the DB .env variables be sure to replace `YOUR_DATABASE_COMPONENT` with the name of your managed DB
 
-   `php artisan route:cache`
+You'll also need to get the `PAPERTRAIL_PORT` from your papertrail account, and the `LOG_DISCORD_WEBHOOK_URL` from the integrations setting page in your discord server
 
-<br/><br/>
+You'll also need to create a S3 compatible space for assets, generate a space API key in the Digital Ocean web console to fill out `LOG_DISCORD_WEBHOOK_URL` and `DO_SECRET_ACCESS_KEY`, as well as replace `YOUR_REGION` with whatever region the space is in
+
+`DO_BUCKET` is simply the name of the space component
+
+Once you set the build command to 
+
+`npm install && npm run prod`
+
+And the run command to 
+
+```
+php artisan migrate --force &&
+php artisan db:seed --force &&
+php artisan config:cache &&
+php artisan route:cache &&
+php artisan assets:sync-static &&
+php artisan assets:purge-deleted &&
+heroku-php-apache2 public/
+```
+
+You're good to go👍
