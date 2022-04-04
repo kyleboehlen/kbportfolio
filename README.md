@@ -78,7 +78,7 @@ A managed database instance is also needed, in the DB .env variables be sure to 
 
 You'll also need to get the `PAPERTRAIL_PORT` from your papertrail account, and the `LOG_DISCORD_WEBHOOK_URL` from the integrations setting page in your discord server
 
-You'll also need to create a S3 compatible space for assets, generate a space API key in the Digital Ocean web console to fill out `LOG_DISCORD_WEBHOOK_URL` and `DO_SECRET_ACCESS_KEY`, as well as replace `YOUR_REGION` with whatever region the space is in
+You'll also need to create a S3 compatible space for assets, generate a space API key in the Digital Ocean web console to fill out `DO_ACCESS_KEY_ID` and `DO_SECRET_ACCESS_KEY`, as well as replace `YOUR_REGION` with whatever region the space is in
 
 `DO_BUCKET` is simply the name of the space component
 
