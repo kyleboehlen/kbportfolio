@@ -41,14 +41,6 @@ return [
 
     'debug' => (bool) env('APP_DEBUG', false),
 
-    // Blacklist ENV Vars from showing up on debug pages
-    'debug_blacklist' => [
-        '_ENV' => array_keys($_ENV),
-        '_POST' => [
-            'password', // As well as passwords in post requests
-        ],
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | Application URL
