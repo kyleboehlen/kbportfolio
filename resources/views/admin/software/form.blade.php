@@ -9,7 +9,7 @@
 
                 {{-- Name --}}
                 <div class="mb-3">
-                    <input type="text" class="form-control-lg hide-delete-btn" name="name" placeholder="Project Name" style="width: 100%;" required
+                    <input type="text" class="form-control-lg " name="name" placeholder="Project Name" style="width: 100%;" required
                         value="{{ old('name') ?? (isset($project) ? $project->name : '') }}"/>
                     @error('name')
                         <p class="text-danger fs-5">{{ $message }}</p>
@@ -18,7 +18,7 @@
 
                 {{-- Type --}}
                 <div class="mb-3">
-                    <select class="form-select hide-delete-btn" name="type" required>
+                    <select class="form-select" name="type" required>
                         <option selected disabled>Select Project Type</option>
                         @foreach(config('software.enum.type') as $type)
                             <option value="{{ $type }}" @if(old('type') == $type || (isset($project) && $project->type == $type)) selected @endif>
@@ -33,8 +33,8 @@
 
                 {{-- Logo --}}
                 <div class="mb-3">
-                    <label class="fs-5" for="logo" accept="image/*" style="text-align: left; width: 100%;">Select Logo</label>
-                    <input class="form-control" type="file" name="logo"/>
+                    <label class="fs-5" for="logo" style="text-align: left; width: 100%;">Select Logo</label>
+                    <input class="form-control" type="file" name="logo" accept="image/*"/>
                     @error('logo')
                         <p class="text-danger fs-5">{{ $message }}</p>
                     @enderror

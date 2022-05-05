@@ -69,6 +69,7 @@ return [
         'icons' => env('DO_FOLDER') . 'public/icons/',
         'images' => env('DO_FOLDER') . 'public/images/',
         'software' => env('DO_FOLDER') . 'public/images/software/',
+        'discord' => env('DO_FOLDER') . 'public/images/discord/',
         'photography' => [
             'compressed' => env('DO_FOLDER') . 'public/images/photography/compressed/',
             'fullres' => env('DO_FOLDER') . 'public/images/photography/fullres/',

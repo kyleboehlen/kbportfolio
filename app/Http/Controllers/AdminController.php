@@ -55,4 +55,14 @@ class AdminController extends Controller
     {
         return redirect()->route('admin.contact.details');
     }
+
+    /**
+     * Redirect to view the add discord bots form
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function bots()
+    {
+        return redirect()->route('admin.bots.add');
+    }
 }

@@ -99,6 +99,12 @@
                     <li class="nav-item">
                         <a class="nav-link fs-2 {{ strpos($route, 'admin.contact') !== false ? 'active' : '' }}" href="{{ route('admin.contact') }}">Contact</a>
                     </li>
+
+                    <span class="navbar-text fs-2 d-none d-lg-block d-xl-block d-xxl-block"> | </span>
+
+                    <li class="nav-item">
+                        <a class="nav-link fs-2 {{ strpos($route, 'admin.bots') !== false ? 'active' : '' }}" href="{{ route('admin.bots') }}">Bots</a>
+                    </li>
                 </ul>
             </div>
 

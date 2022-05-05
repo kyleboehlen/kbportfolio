@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Controllers
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BotController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PhotographyController;
@@ -35,7 +36,7 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('spotify', [HomeController::class, 'spotify'])->name('spotify');
 
 // Photography
-Route::prefix('photography')->group(function(){
+Route::prefix('photography')->group(function() {
     // View show on home images
     Route::get('/', [PhotographyController::class, 'index'])->name('photography');
 
@@ -44,13 +45,13 @@ Route::prefix('photography')->group(function(){
 });
 
 // Software
-Route::prefix('software')->group(function(){
+Route::prefix('software')->group(function() {
     // View the list of software projects
     Route::get('/', [SoftwareController::class, 'projects'])->name('software');
 });
 
 // Contact
-Route::prefix('contact')->group(function(){
+Route::prefix('contact')->group(function() {
     // Index
     Route::get('/', [HomeController::class, 'contact'])->name('contact');
 
@@ -59,12 +60,12 @@ Route::prefix('contact')->group(function(){
 });
 
 // Admin Panel
-Route::group(['prefix' => 'admin',  'middleware' => 'admin.alert'], function(){
+Route::group(['prefix' => 'admin',  'middleware' => 'admin.alert'], function() {
     // Index
     Route::get('/', [AdminController::class, 'index'])->name('admin');
 
     // Photography
-    Route::prefix('photography')->group(function(){
+    Route::prefix('photography')->group(function() {
         // Index
         Route::get('/', [AdminController::class, 'photography'])->name('admin.photography');
 
@@ -98,7 +99,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'admin.alert'], function(){
     });
 
     // Software
-    Route::prefix('software')->group(function(){
+    Route::prefix('software')->group(function() {
         // Index
         Route::get('/', [AdminController::class, 'software'])->name('admin.software');
 
@@ -115,7 +116,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'admin.alert'], function(){
     });
 
     // Resume
-    Route::prefix('resume')->group(function(){
+    Route::prefix('resume')->group(function() {
         // Index
         Route::get('/', [AdminController::class, 'resume'])->name('admin.resume');
     
@@ -128,7 +129,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'admin.alert'], function(){
     });
 
     // Contact
-    Route::prefix('contact')->group(function(){
+    Route::prefix('contact')->group(function() {
         // Index
         Route::get('/', [AdminController::class, 'contact'])->name('admin.contact');
 
@@ -142,5 +143,22 @@ Route::group(['prefix' => 'admin',  'middleware' => 'admin.alert'], function(){
         // Update email routes
         Route::get('email', [ContactController::class, 'editEmail'])->name('admin.contact.edit.email');
         Route::post('email', [ContactController::class, 'updateEmail'])->name('admin.contact.update.email');
+    });
+
+    // Bots
+    Route::prefix('bots')->group(function() {
+        // Index
+        Route::get('/', [AdminController::class, 'bots'])->name('admin.bots');
+
+        // Add
+        Route::get('add', [BotController::class, 'add'])->name('admin.bots.add');
+        Route::post('add', [BotController::class, 'store'])->name('admin.bots.store');
+
+        // Edit
+        Route::get('edit/{bot}', [BotController::class, 'edit'])->name('admin.bots.edit');
+        Route::post('edit/{bot}', [BotController::class, 'update'])->name('admin.bots.update');
+
+        // Delete
+        Route::post('destroy/{bot}', [BotController::class, 'destroy'])->name('admin.bots.destroy');
     });
 });
