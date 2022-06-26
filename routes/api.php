@@ -17,6 +17,6 @@ use App\Http\Controllers\BotController;
 |
 */
 
-Route::middleware('throttle:2,1')->group(function() {
+Route::middleware('throttle:15,1')->group(function() {
     Route::get('bots', [BotController::class, 'list']);
 });

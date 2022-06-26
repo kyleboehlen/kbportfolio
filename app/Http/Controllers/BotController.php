@@ -145,8 +145,7 @@ class BotController extends Controller
             if($request->has('img'))
             {
                 // Upload img
-                $bot->img = $request->file('img')->store('public/images/discord');
-                $bot->img = str_replace('public/images/discord/', '', $bot->img);
+                $bot->img = str_replace(config('filesystems.dir.discord') . '/', '', Storage::put(config('filesystems.dir.discord'), $request->file('img')));
             }
 
             // Save the bot
@@ -216,7 +215,7 @@ class BotController extends Controller
         $response['num_bots'] = $bots->count();
 
         // Add all the bots to the reponse
-        $bots_array = array();
+        $bots_response = array();
         $properties = ['name', 'desc', 'img', ];
         foreach ($bots as $bot) {
             foreach ($properties as $prop) {
@@ -224,9 +223,11 @@ class BotController extends Controller
             }
 
             $bots_array['invite_url'] = $bot->getInviteUrl();
+
+            array_push($bots_response, $bots_array);
         }
 
-        $response['bots'] = $bots_array;
+        $response['bots'] = $bots_response;
 
         return response()->json($response);
     }
