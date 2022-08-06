@@ -1,4 +1,4 @@
-require('./bootstrap');
+import './bootstrap';
 
 $(document).ready(function(){
     $('.lazy').Lazy({
