@@ -2,4 +2,4 @@
 
 # Build NPM mix
 npm -v
-npm run prod
+npm run production
