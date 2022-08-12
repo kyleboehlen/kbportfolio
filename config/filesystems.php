@@ -32,21 +32,19 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path(),
+            'root' => storage_path() . 'app/',
         ],
 
-        'do' => [
+        's3' => [
             'driver' => 's3',
-            'visibility' => 'public',
-            'key' => env('DO_ACCESS_KEY_ID'),
-            'secret' => env('DO_SECRET_ACCESS_KEY'),
-            'region' => env('DO_DEFAULT_REGION'),
-            'bucket' => env('DO_BUCKET'),
-            // 'folder' => env('DO_FOLDER'),
-            'cdn_endpoint' => env('DO_CDN_ENDPOINT'),
-            'url' => env('DO_URL'),
-            'endpoint' => env('DO_ENDPOINT'),
-            'use_path_style_endpoint' => env('DO_USE_PATH_STYLE_ENDPOINT', false),
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION'),
+            'bucket' => env('AWS_BUCKET'),
+            'url' => env('AWS_URL'),
+            'endpoint' => env('AWS_ENDPOINT'),
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'throw' => false,
         ],
 
         'minio' => [
@@ -55,7 +53,7 @@ return [
             'secret' => 'password',
             'region' => 'us-east-1',
             'bucket' => 'local',
-            'url' => 'http://localhost:9000/local',
+            'url' => 'http://localhost:9000/local/app',
             'endpoint' => 'http://minio:9000',
             'use_path_style_endpoint' => true,
             // 'bucket_endpoint' => true,
