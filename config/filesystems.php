@@ -32,7 +32,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path() . 'app/',
+            'root' => storage_path(),
         ],
 
         's3' => [
@@ -44,7 +44,6 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
-            'throw' => false,
         ],
 
         'minio' => [
@@ -53,7 +52,7 @@ return [
             'secret' => 'password',
             'region' => 'us-east-1',
             'bucket' => 'local',
-            'url' => 'http://localhost:9000/local/app',
+            'url' => 'http://localhost:9000/local',
             'endpoint' => 'http://minio:9000',
             'use_path_style_endpoint' => true,
             // 'bucket_endpoint' => true,
@@ -63,14 +62,14 @@ return [
 
     // Directories for referencing files
     'dir' => [
-        'documents' => env('DO_FOLDER') . 'public/documents/',
-        'icons' => env('DO_FOLDER') . 'public/icons/',
-        'images' => env('DO_FOLDER') . 'public/images/',
-        'software' => env('DO_FOLDER') . 'public/images/software/',
-        'discord' => env('DO_FOLDER') . 'public/images/discord/',
+        'documents' => 'app/public/documents/',
+        'icons' => 'app/public/icons/',
+        'images' => 'app/public/images/',
+        'software' => 'app/public/images/software/',
+        'discord' => 'app/public/images/discord/',
         'photography' => [
-            'compressed' => env('DO_FOLDER') . 'public/images/photography/compressed/',
-            'fullres' => env('DO_FOLDER') . 'public/images/photography/fullres/',
+            'compressed' => 'app/public/images/photography/compressed/',
+            'fullres' => 'app/public/images/photography/fullres/',
         ],
         // The directories that are static assets that need to be synced with the s3 bucket
         'static' => [
