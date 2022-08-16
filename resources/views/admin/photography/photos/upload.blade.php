@@ -33,7 +33,7 @@
                         showDrag: false
                     },
                     allowedFileExtensions: ['png', 'jpg', 'jpeg'],
-                    maxFileSize: 20000,
+                    maxFileSize: 30000,
                     maxFileCount: 40,
                     showUpload: true,
                     showRemove: true,
