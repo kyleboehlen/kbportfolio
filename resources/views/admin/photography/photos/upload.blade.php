@@ -38,7 +38,7 @@
                     showUpload: true,
                     showRemove: true,
                     msgUploadEnd: 'Success! Images uploaded.',
-                    uploadAsync: false
+                    maxAjaxThreads: 1,
                 });
                 // .on('filebatchuploadcomplete', function(event, data){
                 //     alert('all files uploaded');
