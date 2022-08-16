@@ -37,8 +37,8 @@
                     maxFileCount: 40,
                     showUpload: true,
                     showRemove: true,
-                    msgUploadEnd: 'Success! Images uploaded.'
-                    // uploadAsync: false
+                    msgUploadEnd: 'Success! Images uploaded.',
+                    uploadAsync: false
                 });
                 // .on('filebatchuploadcomplete', function(event, data){
                 //     alert('all files uploaded');
