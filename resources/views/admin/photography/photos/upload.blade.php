@@ -37,8 +37,7 @@
                     maxFileCount: 40,
                     showUpload: true,
                     showRemove: true,
-                    msgUploadEnd: 'Success! Images uploaded.',
-                    maxAjaxThreads: 1,
+                    msgUploadEnd: 'Success! Images uploaded.'
                 });
                 // .on('filebatchuploadcomplete', function(event, data){
                 //     alert('all files uploaded');
