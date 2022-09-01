@@ -71,9 +71,7 @@ class ResumeController extends Controller
         if(\Auth::check())
         {
             // Upload the resume
-            $file = Storage::put(config('filesystems.dir.documents'), $request->file('resume'));
-            Storage::delete(config('filesystems.dir.documents') . 'resume.pdf');
-            Storage::move($file, config('filesystems.dir.documents') . 'resume.pdf');
+            Storage::putFileAs(config('filesystems.dir.documents'), $request->file('resume'), 'resume.pdf');
         }
 
         return redirect()->route('admin.resume.view')->with([
