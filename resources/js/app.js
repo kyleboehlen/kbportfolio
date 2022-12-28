@@ -8,6 +8,15 @@ $(document).ready(function(){
             element.css('min-width', '0px');
         },
     });
+
+    // When the copy button is clicked, select the value of the text box, attempt
+    // to execute the copy command
+    $('#copy-button').bind('click', function() {
+        var input = document.querySelector('#copy-input');
+        input.focus();
+        input.select();
+        var success = document.execCommand('copy');
+    });
     
     // Shortcut to admin panel by right click on splash page logo
     $('.context-logo').on('contextmenu', function(e){
@@ -167,9 +176,9 @@ $(document).ready(function(){
     $('#full-size-viewer').hide();
 });
 
-window.verifyDeleteForm = function (message, formID){
+window.verifyDeleteForm = function (message, formID, title = 'Delete?'){
     swal.fire({
-        title: 'Delete?',
+        title: title,
         icon: 'warning',
         iconColor: '#e3342f',
         html: `<p class="alert-text">` + message + `</p>`,
@@ -177,7 +186,7 @@ window.verifyDeleteForm = function (message, formID){
         showCancelButton: true,
         confirmButtonColor: '#e3342f',
         cancelButtonColor: '#38c172',
-        confirmButtonText: 'Yes, delete it!',
+        confirmButtonText: 'Yes, do it!',
     }).then((result) => {
         if(result.isConfirmed)
         {

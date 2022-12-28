@@ -44,6 +44,11 @@ class PhotographyController extends Controller
                 'route' => 'admin.photography.photos.edit',
                 'icon' => 'photo',
             ],
+            [
+                'text' => 'Pear',
+                'route' => 'admin.photography.shoot.pear',
+                'icon' => 'pear',
+            ],
         ];
     }
 
@@ -645,5 +650,79 @@ class PhotographyController extends Controller
         ])->with([
             'success_alert' => "Successfully deleted photo $photo->caption",
         ]);
+    }
+
+    /**
+     * Returns either the view to select a shoot to edit or
+     * the shoot with an ability to see or toggle the slug
+     * and link for portrait pear
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function editPear(Shoots $shoot = null)
+    {
+        // If the shoot is set
+        if(!is_null($shoot))
+        {
+            // Return the pear to edit the shoot
+            return view('admin.photography.shoots.pear')->with([
+                'action_nav_opts' => $this->action_nav_opts,
+                'card_header' => 'Pear Shoot',
+                'shoot' => $shoot,
+            ]);
+        }
+
+        // Get all shoots
+        $shoots = Shoots::orderBy('name')->get();
+
+        // Return the shoot selector view
+        return view('admin.photography.shoots.selector')->with([
+            'action_nav_opts' => $this->action_nav_opts,
+            'card_header' => 'Select Pear',
+            'shoots' => $shoots,
+        ]);
+    }
+
+    /**
+     * Roll or remove Pear slug
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updatePear(Shoots $shoot)
+    {
+        // Verify user is admin authenticated
+        if(\Auth::check())
+        {
+            // Check if already set
+            if (!is_null($shoot->pear_slug)) {
+                // Remove slug
+                $shoot->pear_slug = null;
+            } else {
+                $shoot->pear_slug = $this->generateSlug();
+            }
+
+            // Save
+            if (!$shoot->save()) {
+                // Log errors
+                Log::error('Failed to re-roll Pear slug', [
+                    'shoot' => $shoot->toArray(),
+                ]);
+
+                // Return errors
+                return redirect()->back()->with([
+                    'failure_alert' => 'Failed to re-roll Pear slug, see logs',
+                ]);
+            }
+        }
+
+        return redirect()->route('admin.photography.shoot.pear', ['shoot' => $shoot->id])->with([
+            'success_alert' => "Successfully re-rolled Pear slug for $shoot->name",
+        ]);
+    }
+
+    private function generateSlug($length = 6) {
+        $original_string = array_merge(range(0,29), range('A', 'Z'));
+        $original_string = implode("", $original_string);
+        return substr(str_shuffle($original_string), 0, $length);
     }
 }

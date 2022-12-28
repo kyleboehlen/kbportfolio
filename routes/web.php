@@ -81,6 +81,10 @@ Route::group(['prefix' => 'admin',  'middleware' => 'admin.alert'], function() {
 
             // Delete
             Route::post('destroy/{shoot}', [PhotographyController::class, 'destroyShoot'])->name('admin.photography.shoot.destroy');
+
+            // Pear
+            Route::get('pear/{shoot?}', [PhotographyController::class, 'editPear'])->name('admin.photography.shoot.pear');
+            Route::post('pear/{shoot}', [PhotographyController::class, 'updatePear'])->name('admin.photography.shooot.toggle');
         });
 
         // Photos
