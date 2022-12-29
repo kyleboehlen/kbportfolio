@@ -25,5 +25,5 @@ Route::group(['prefix' => 'bots'], function() {
 Route::group(['prefix' => 'pear'], function() {
     Route::get('home/{category_id?}', [PearController::class, 'home']);
     Route::get('shoot/{slug}', [PearController::class, 'shoot']);
-    Route::post('contact', [PearController::class, 'contact']);
+    Route::post('contact', [PearController::class, 'contact'])->middleware('throttle:2,60');
 });
