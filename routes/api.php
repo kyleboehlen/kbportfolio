@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 // Controllers
 use App\Http\Controllers\BotController;
+use App\Http\Controllers\PearController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,12 @@ use App\Http\Controllers\BotController;
 |
 */
 
-Route::middleware('throttle:15,1')->group(function() {
-    Route::get('bots', [BotController::class, 'list']);
+Route::group(['prefix' => 'bots'], function() {
+    Route::get('/', [BotController::class, 'list']);
+});
+
+Route::group(['prefix' => 'pear'], function() {
+    Route::get('home/{category_id?}', [PearController::class, 'home']);
+    Route::get('shoot/{slug}', [PearController::class, 'shoot']);
+    Route::post('contact', [PearController::class, 'contact']);
 });

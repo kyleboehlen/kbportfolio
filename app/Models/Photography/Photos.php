@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
 
+// Models
+use App\Models\Photography\PhotoCategories;
+
 class Photos extends Model
 {
     use HasFactory, SoftDeletes;
@@ -24,5 +27,9 @@ class Photos extends Model
                 ->get()
                 ->pluck('category_id')
                 ->toArray();
+    }
+
+    public function photoCategory() {
+        return $this->hasMany(PhotoCategories::class, 'photo_id');
     }
 }
