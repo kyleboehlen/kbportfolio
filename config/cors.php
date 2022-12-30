@@ -23,7 +23,8 @@ return [
         'https://www.kylesbots.com',
         'https://www.portraitpear.photography',
         'http://localhost:3000',
-        'http://localhost:5173'
+        'http://localhost:5173',
+        'capacitor://localhost',
     ],
 
     'allowed_origins_patterns' => [],
