@@ -86,5 +86,35 @@ return [
             'bg_color' => 'secondary',
             'text_dark' => false,
         ],
+        18 => [
+            'name' => 'TailwindCSS',
+            'bg_color' => 'info',
+            'text_dark' => true,
+        ],
+        19 => [
+            'name' => 'DaisyUI',
+            'bg_color' => 'warning',
+            'text_dark' => true,
+        ],
+        20 => [
+            'name' => 'Vue-Router',
+            'bg_color' => 'danger',
+            'text_dark' => false,
+        ],
+        21 => [
+            'name' => 'Pinia',
+            'bg_color' => 'success',
+            'text_dark' => false,
+        ],
+        22 => [
+            'name' => 'Capacitor',
+            'bg_color' => 'secondary',
+            'text_dark' => false,
+        ],
+        21 => [
+            'name' => 'Iconify',
+            'bg_color' => 'info',
+            'text_dark' => true,
+        ],
     ],
 ];
