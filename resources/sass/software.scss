@@ -68,21 +68,21 @@ div.software-container
         color: $white;
         padding: .75%;
         text-decoration: none;
-        min-width: 50%;
+        width: 50%;
 
         @media only screen and (max-width: 1600px)
         {
-            min-width: 60%;
+            width: 60%;
         }
 
         @media only screen and (max-width: 1200px)
         {
-            min-width: 80%;
+            width: 80%;
         }
 
         @media only screen and (max-width: 1000px)
         {
-            min-width: 90%;
+            width: 90%;
         }
 
         @media only screen and (max-width: 700px)
