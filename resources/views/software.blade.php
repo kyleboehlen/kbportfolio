@@ -8,8 +8,11 @@
 
     {{-- Flex container --}}
     <div class="software-container d-flex flex-column justify-content-evenly align-items-center mt-5 pt-5">
-        <div class="mt-5 mb-5 pt-5 pb-5"></div>
-        <div class="mt-5 mb-5 pt-5 pb-5"></div>
+        @notmobile
+            <div class="mt-5 mb-5 pt-5 pb-5"></div>
+            <div class="mt-5 mb-5 pt-5 pb-5"></div>
+        @endnotmobile
+
         @foreach($projects as $project)
             <div class="project d-flex justify-content-evenly mb-5">
                 <div class="logo-container" style="background-image: url({{ Storage::url(config('filesystems.dir.software') . $project->logo) }});"></div>
