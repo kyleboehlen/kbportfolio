@@ -33,16 +33,7 @@ class PearController extends Controller
             });
         }
 
-        // Check if there is already a seed set on the session for randomizing the photo order
-        $rand_seed = session('rand_seed');
-        if(is_null($rand_seed)) // If no seed is set...
-        {
-            // Generate 4 digit integer seed
-            $rand_seed = rand(1000, 9999);
-            session(['rand_seed' => $rand_seed]); // And save it to the session
-        }
-
-        $photos = $photos->inRandomOrder($rand_seed)->get();
+        $photos = $photos->inRandomOrder()->get();
 
         // Set response properties
         $response = array();
