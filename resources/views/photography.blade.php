@@ -29,6 +29,8 @@
                 <img class="lazy" data-src="{{ Storage::url(config('filesystems.dir.photography.compressed') . $photo->asset) }}" />
             </div>
         @endforeach
+
+        {{-- Copyright footer --}}
         <div class="photo-container">
             <p class="m-1">&copy; {{ \Carbon\Carbon::now()->format('Y') }} Kyle Boehlen</p>
         </div>
