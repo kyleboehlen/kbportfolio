@@ -20,7 +20,7 @@ return [
     'allowed_methods' => ['*'],
 
     'allowed_origins' => [
-        'https://www.kylesbots.com',
+        'https://bots.kyleboehlen.com',
         'https://www.portraitpear.photography',
         'http://localhost:3000',
         'http://localhost:5173',

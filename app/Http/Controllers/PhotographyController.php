@@ -704,7 +704,7 @@ class PhotographyController extends Controller
             // Save
             if (!$shoot->save()) {
                 // Log errors
-                Log::error('Failed to re-roll Pear slug', [
+                \Log::error('Failed to re-roll Pear slug', [
                     'shoot' => $shoot->toArray(),
                 ]);
 
