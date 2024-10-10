@@ -2,6 +2,12 @@ packages:
   yum:
     amazon-cloudwatch-agent: []
 
+option_settings:
+  aws:elasticbeanstalk:cloudwatch:logs:
+    StreamLogs: true
+    DeleteOnTerminate: false
+    RetentionInDays: 30
+
 files:
     "/etc/awslogs/awscli.conf" :
         mode: "000600"
@@ -12,7 +18,7 @@ files:
           cwlogs = cwlogs
           [default]
           region = `{"Ref":"AWS::Region"}`
-    "/tmp/laravel.json":
+    "/opt/aws/amazon-cloudwatch-agent/etc/custom_logs.json":
         mode: "000600"
         owner: root
         group: root
@@ -35,9 +41,9 @@ files:
           }
 
 container_commands:
-    "01":
-        command: amazon-cloudwatch-agent-ctl -a append-config -m ec2 -c file:/tmp/laravel.json -s
-    "02":
-        command: sudo systemctl enable amazon-cloudwatch-agent.service
-    "03":
-        command: sudo systemctl restart amazon-cloudwatch-agent
+  01:
+    command: "sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a append-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/etc/custom_logs.json -s"
+  02:
+    command: "sudo systemctl enable amazon-cloudwatch-agent.service"
+  03:
+    command: "sudo systemctl restart amazon-cloudwatch-agent"
